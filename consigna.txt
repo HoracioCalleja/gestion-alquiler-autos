@@ -1,0 +1,28 @@
+Nuevo proyecto (tarea):
+Proyecto: Agencia de alquiler de autos
+Tecnologías: HTML, CSS, JS, Nunjucks, Bulma, Node.JS, SQLite.
+Nunjucks y bulma no lo vimos en detalle, pero son parecidos a handlebars y bootstrap
+Este ejercicio ayuda a que hagan su propia investigación tecnologías y se acostumbren a leer documentación.
+Requerimientos:
+ABM/CRUD de autos
+Marca
+Modelo
+Año
+Kms
+Color
+Aire acondicionado (si/no)
+Pasajeros
+Manual/Automático
+
+
+TODO: 
+- CONSTRUIR EN ESTE ORDEN:
+.CONTROLLER
+.SERVICE
+.REPOSITORY
+con los metodos basicos
+- consultar los querys de creacion y empezar a realizar vistas
+- primero realizar la vista de getAll
+- luego byId
+- luego eliminar
+- luego crear y editar
