@@ -1,4 +1,4 @@
-module.exports = class Car{
+module.exports = class Auto{
   constructor({
     id,
     marca,

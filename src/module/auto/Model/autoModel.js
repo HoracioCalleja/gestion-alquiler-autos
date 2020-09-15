@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes, Model } = require("sequelize");
+const {  DataTypes, Model } = require("sequelize");
 
-module.exports = class Auto extends Model {
+module.exports = class AutoModel extends Model {
   static setUp(sequelizeInstance) {
-    Auto.init(
+    AutoModel.init(
       {
         id: {
           type: DataTypes.INTEGER,
@@ -48,13 +48,13 @@ module.exports = class Auto extends Model {
       {
         updatedAt : "actualizado_en",
         createdAt : "creado_en",
-        sequelize,
+        sequelize : sequelizeInstance,
         modelName: "Auto",
         timestamps: true,
       }
     );
 
-    return Auto;
+    return AutoModel;
 
   }
 };
