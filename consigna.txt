@@ -16,13 +16,7 @@ Manual/Automático
 
 
 TODO: 
-- CONSTRUIR EN ESTE ORDEN:
-.CONTROLLER
-.SERVICE
-.REPOSITORY
-con los metodos basicos
-- consultar los querys de creacion y empezar a realizar vistas
-- primero realizar la vista de getAll
-- luego byId
-- luego eliminar
-- luego crear y editar
+
+- VISTA DE UN AUTO (FORMULARIO) 
+- PERMITIR EDITAR EL AUTO O CREARLO EN BASE A SU ID
+- PERMITIR ELIMINAR EL AUTO

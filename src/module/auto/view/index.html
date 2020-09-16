@@ -1,1 +1,66 @@
-<!-- {% extends "auto/" %} -->
+{% extends "view/layout/base.html" %}
+<!-- {% for message in messages %}
+<div class="container">
+  <div class="notification is-danger">
+    <p>{{message}}</p>
+  </div>
+</div>
+{% endfor %} {% for error in errors %}
+<div class="container">
+  <div class="notification is-danger">
+    <p>{{error}}</p>
+  </div>
+</div>
+{% endfor %}  -->
+
+{% block body %}
+
+<table class="table is-fullwidth has-background-light	">
+  <thead>
+    <tr>
+      <th><span class="is-size-6">ID</span></th>
+      <th><span class="is-size-6">Marca</span></th>
+      <th><span class="is-size-6">Modelo</span></th>
+      <th><span class="is-size-6">Año</span></th>
+      <th><span class="is-size-6">Kms</span></th>
+      <th><span class="is-size-6">Color</span></th>
+      <th><span class="is-size-6">A/C</span></th>
+      <th><span class="is-size-6">Pasajeros</span></th>
+      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Edit</span></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for auto in data.autos %} 
+    <tr class="has-background-grey-dark has-text-white">
+      <td><span class="is-size-6">{{auto.id}}</span></td>
+      <td><span class="is-size-6">{{auto.marca}}</span></td>
+      <td><span class="is-size-6">{{auto.modelo}}</span></td>
+      <td><span class="is-size-6">{{auto.anio}}</span></td>
+      <td><span class="is-size-6">{{auto.kms}}</span></td>
+      <td><span class="is-size-6">{{auto.color}}</span></td>
+      <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
+      <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
+      <td><span class="is-size-6">{{auto.cambioAutomatico}}</span></td>
+      <td><span class=" button is-size-6"><i class="fas fa-edit"></i></span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th><span class="is-size-6">ID</span></th>
+      <th><span class="is-size-6">Marca</span></th>
+      <th><span class="is-size-6">Modelo</span></th>
+      <th><span class="is-size-6">Año</span></th>
+      <th><span class="is-size-6">Kms</span></th>
+      <th><span class="is-size-6">Color</span></th>
+      <th><span class="is-size-6">A/C</span></th>
+      <th><span class="is-size-6">Pasajeros</span></th>
+      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Edit</span></th>
+    </tr>
+  </tfoot>
+</table>
+
+  {% endblock %}
+</table>

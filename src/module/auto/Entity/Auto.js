@@ -3,7 +3,7 @@ module.exports = class Auto{
     id,
     marca,
     modelo,
-    año,
+    anio,
     kms,
     color,
     aireAcondicionado,
@@ -13,7 +13,7 @@ module.exports = class Auto{
     this.id = id;
     this.marca = marca;
     this.modelo = modelo;
-    this.año = año;
+    this.anio = anio;
     this.kms = kms;
     this.color = color;
     this.aireAcondicionado = aireAcondicionado;
