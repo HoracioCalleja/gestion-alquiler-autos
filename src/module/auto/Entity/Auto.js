@@ -8,7 +8,7 @@ module.exports = class Auto{
     color,
     aireAcondicionado,
     pasajeros,
-    cambioAutomatico
+    esAutomatico
   }){
     this.id = id;
     this.marca = marca;
@@ -18,6 +18,6 @@ module.exports = class Auto{
     this.color = color;
     this.aireAcondicionado = aireAcondicionado;
     this.pasajeros = pasajeros;
-    this.cambioAutomatico = cambioAutomatico;
+    this.esAutomatico = esAutomatico;
   }
 }

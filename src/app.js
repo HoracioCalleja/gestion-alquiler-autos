@@ -30,7 +30,7 @@ const container = configureDI();
     color: "Verde",
     aireAcondicionado: true,
     pasajeros: 3,
-    cambioAutomatico: false,
+    esAutomatico: false,
   });
 
   const porsche = await model.create({
@@ -41,7 +41,7 @@ const container = configureDI();
     color: "Negro",
     aireAcondicionado: true,
     pasajeros: 3,
-    cambioAutomatico: true,
+    esAutomatico: true,
   });
 
 })()

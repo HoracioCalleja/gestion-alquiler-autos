@@ -11,36 +11,52 @@ module.exports = class AutoController extends AbstractController {
     let ROUTE = this.BASE_ROUTE;
     app.get(`${ROUTE}`, this.index.bind(this));
     app.get(`${ROUTE}/:id`, this.view.bind(this));
+    app.get(`${ROUTE}/save`, this.save.bind(this));
+    app.get(`${ROUTE}/create`, this.create.bind(this));
   }
 
   async index(req, res) {
-    const autos = await this.autoService.getAll();
-    // let errors
-    // let { errors, messages } = req.session;
-    res.status(200).render("auto/view/index.html", {
-      data: {
-        autos,
-      },
-      // errors,
-      // messages
-    });
-    // res.status(200).send(autos);
+    try{
+      const autos = await this.autoService.getAll();
+      // let errors
+      // let { errors, messages } = req.session;
+      res.status(200).render("auto/view/index.html", {
+        data: {
+          autos,
+        },
+        // errors,
+        // messages
+      });
+      // res.status(200).send(autos);
+    } catch(e){
+      throw new Error(`Error : ${e.message}`)
+    }
     // req.session.errors = [];
     // req.session.messages = [];
   }
 
   async view(req, res) {
-    const { id } = req.params;
-    const auto = await this.autoService.getById(id);
-    res.render("auto/view/form.html", {data : {
-      auto, 
-    }})
+    try{
+      const { id } = req.params;
+      const auto = await this.autoService.getById(id);
+      res.render("auto/view/form.html", {data : {
+        auto, 
+      }})
+    } catch(e){
+      throw new Error(`Error : ${e.message}`)
+    }
     // res.status(200).send(auto);
   }
 
-  async create() {}
+  async create(req,res) {
+    res.render("auto/view/form.html")
+  }
 
-  async save() {}
+  async save(req,res) {
+    const car = req.body;
+    console.log(car);
+    res.status(200).send(car)
+  }
 
   /**
    * @param {import('express').Request} req

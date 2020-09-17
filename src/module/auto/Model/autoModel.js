@@ -40,7 +40,7 @@ module.exports = class AutoModel extends Model {
           allowNull: false,
         },
         //Caja de cambio automática
-        cambioAutomatico: {
+        esAutomatico: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
         },
