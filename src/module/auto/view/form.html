@@ -4,183 +4,157 @@
 
 {% set auto = data.auto %}
 
-<div class="level has-text-centered">
-  <div class="level-left">
-    <p class="level-item title">
+<div class="hero">
+  <div class="hero-body">
+    <p class="level-item is-size-4 has-text-centered has-text-weight-bold">
       {% if auto.id %} Editando Auto con ID : {{auto.id}} {% else %} Nuevo auto
       {% endif %}
     </p>
   </div>
 </div>
 
-<section class="section">
-  <form action="/auto/save" method="post">
-    <div class="container">
-      <div class="field">
-        <div class="field-body has-text-centered">
-          <div class="field">
-            <label for="" class="label">Marca</label>
-            <p class="control is-expanded">
-              {% if auto.id %}
-              <input
-                class="input"
-                type="text"
-                name="marca"
-                value="{{auto.id}}"
-              />
-              {% else %}
-              <input
-                class="input"
-                type="text"
-                name="marca"
-                value="{{auto.id}}"
-              />
-              {% endif %}
-            </p>
-          </div>
-          <div class="field">
-            <label for="" class="label">Modelo</label>
-            <p class="control is-expanded">
-              {% if auto.id %}
-              <input
-                class="input"
-                type="text"
-                name="modelo"
-                value="{{auto.modelo}}"
-              />
-              {% else %}
-              <input class="input" type="text" name="modelo" value="" />
-              {% endif %}
-            </p>
-          </div>
-        </div>
-        <div class="field-body pt-5 has-text-centered">
-          <div class="field">
-            <label for="" class="label">Kilometros</label>
-            <p class="control is-expanded">
-              {% if auto.id %}
-              <input
-                class="input"
-                type="number"
-                name="kms"
-                value="{{auto.kms}}"
-              />
-              {% else %}
-              <input class="input" type="number" name="kms" value="" />
-              {% endif %}
-            </p>
-          </div>
-          <div class="field">
-            <label for="" class="label">Año</label>
-            <p class="control is-expanded">
-              {% if auto.id %}
-              <input
-                class="input"
-                type="number"
-                name="anio"
-                value="{{auto.anio}}"
-              />
-              {% else %}
-              <input class="input" type="number" name="anio" value="" />
-              {% endif %}
-            </p>
-          </div>
-        </div>
-        <div class="field-body pt-5 has-text-centered">
-          <div class="field">
-            <label for="" class="label">Color</label>
-            <p class="control is-expanded">
-              {% if auto.id %}
-              <input
-                class="input"
-                type="text"
-                name="color"
-                placeholder=""
-                value="{{auto.color}}"
-              />
-              {% else %}
-              <input
-                class="input"
-                type="text"
-                name="color"
-                placeholder=""
-                value=""
-              />
-              {% endif %}
-            </p>
-          </div>
-          <div class="field">
-            <label for="" class="label">Pasajeros</label>
-            <p class="control is-expanded">
-              <input
-                class="input"
-                type="email"
-                name=""
-                placeholder=""
-                value="{% if auto.pasajeros %} {{auto.pasajeros}} {% else %} ''  {% endif %} "
-              />
-            </p>
-          </div>
-        </div>
-        <div class="field-body pt-5 has-text-centered">
-          <div class="field">
-            <label class="label">Es automático</label>
-            <div class="control">
-              <label class="radio">
-                {% if auto.esAutomatico %}
-                <input type="radio" checked name="es" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio" name="es" />
-                No
-              </label>
-              {% else %}
-              <label class="radio">
-                <input type="radio" name="es" />
-                Si
-              </label>
+<hr />
 
-              <label class="radio">
-                <input type="radio" checked name="es" />
-                No
-              </label>
-              {% endif %}
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Tiene aire acondicionado</label>
-            <div class="control">
-              {% if auto.aireAcondicionado %}
-                <label class="radio">
-                <input type="radio" checked name="tiene" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio"  name="tiene" />
-                No
-              </label>
-              {% else %}
-              <label class="radio">
-                <input type="radio" name="tiene" />
-                Si
-              </label>
-              <label class="radio">
-                <input type="radio" checked name="tiene" />
-                No
-              </label>
-              {% endif %}
+<section class="section">
+  <form action="/auto/save" method="POST">
+    <input type="hidden" name="id" value="{{auto.id}}">
+    <div class="container has-text-centered">
+      <div class="field">
+      <div class="field-body">
+        <div class="field">
+          <label for="" class="label is-size-5">Marca</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="text"
+              name="marca"
+              value="{{auto.marca}}"
+              placeholder="Ej: Renault"
+              required
+            />
+          </p>
+        </div>
+        <div class="field">
+          <label for="" class="label is-size-5">Modelo</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="text"
+              name="modelo"
+              value="{{auto.modelo}}"
+              placeholder="Ej: Super candy"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label for="" class="label is-size-5">Kilometros</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="number"
+              name="kms"
+              value="{{auto.kms}}"
+              placeholder="Ej: 30000"
+              required
+            />
+          </p>
+        </div>
+        <div class="field">
+          <label for="" class="label is-size-5">Año</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="number"
+              name="anio"
+              value="{{auto.anio}}"
+              placeholder="Ej: 2014"
+              required
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label for="" class="label is-size-5">Color</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="text"
+              name="color"
+              placeholder="Ej: Negro"
+              value="{{auto.color}}"
+            />
+          </p>
+        </div>
+        <div class="field">
+          <label class="label is-size-5">Pasajeros</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="number"
+              name="pasajeros"
+              placeholder="Ej: 3"
+              value="{{auto.pasajeros}}"
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label class="label is-size-5">Es automático</label>
+          <div class="control is-expanded">
+            <div class="select is-rounded">
+              <select name="esAutomatico" required class="is-hoverable">
+                {% if auto.esAutomatico %}
+                <option value="true" selected>Si</option>
+                <option value="false">No</option>
+                {% elif not auto.esAutomatico %}
+                <option value="true">Si</option>
+                <option value="false" selected>No</option>
+                {% else %}
+                <option value="true">Si</option>
+                <option value="false">No</option>
+                {% endif %}
+              </select>
             </div>
           </div>
         </div>
-        <div class="field is-grouped pt-5 is-grouped-centered">
-          <p class="control">
-            <a class="button is-success"> Submit </a>
-          </p>
-          <p class="control">
-            <a class="button is-light" href="/auto"> Cancel </a>
-          </p>
+        <div class="field">
+          <label class="label is-size-5">Tiene aire acondicionado</label>
+          <div class="control is-expanded">
+            <div class="select is-rounded">
+              <select name="aireAcondicionado" required class="is-hoverable">
+                {% if auto.aireAcondicionado %}
+                <option value="true" selected>Si</option>
+                <option value="false">No</option>
+                {% elif not auto.aireAcondicionado %}
+                <option value="true">Si</option>
+                <option value="false" selected>No</option>
+                {% else %}
+                <option value="true">Si</option>
+                <option value="false">No</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="field is-grouped pt-5 is-grouped-centered">
+        <p class="control">
+          <input
+            type="submit"
+            class="button is-primary is-large"
+            value="Guardar"
+          />
+        </p>
+        <p class="control">
+          <a class="button is-light is-large" href="/auto"> Cancel </a>
+        </p>
+      </div>
       </div>
     </div>
   </form>

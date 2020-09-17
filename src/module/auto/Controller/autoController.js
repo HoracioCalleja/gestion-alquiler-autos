@@ -9,10 +9,10 @@ module.exports = class AutoController extends AbstractController {
 
   configureRoutes(app) {
     let ROUTE = this.BASE_ROUTE;
+    app.get(`${ROUTE}/create`, this.create.bind(this));
     app.get(`${ROUTE}`, this.index.bind(this));
     app.get(`${ROUTE}/:id`, this.view.bind(this));
-    app.get(`${ROUTE}/save`, this.save.bind(this));
-    app.get(`${ROUTE}/create`, this.create.bind(this));
+    app.post(`${ROUTE}/save`, this.save.bind(this));
   }
 
   async index(req, res) {
@@ -49,12 +49,13 @@ module.exports = class AutoController extends AbstractController {
   }
 
   async create(req,res) {
+    console.log("En create")
     res.render("auto/view/form.html")
   }
 
   async save(req,res) {
     const car = req.body;
-    console.log(car);
+    console.log(req.body);
     res.status(200).send(car)
   }
 

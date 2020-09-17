@@ -15,7 +15,7 @@
 
 {% block body %}
 
-<table class="table is-fullwidth has-background-light	">
+<table class="table is-fullwidth has-background-light has-text-centered	">
   <thead>
     <tr>
       <th><span class="is-size-6">ID</span></th>
@@ -41,7 +41,7 @@
       <td><span class="is-size-6">{{auto.color}}</span></td>
       <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
       <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
-      <td><span class="is-size-6">{{auto.cambioAutomatico}}</span></td>
+      <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
       <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}"><i class="fas fa-edit"></i></a> </span></td>
     </tr>
     {% endfor %}
