@@ -1,4 +1,4 @@
-const Auto = require ('../Model/autoModel');
+const Auto = require ('../Entity/Auto');
 
 module.exports = class AutoService {
   constructor(autoRepository){
@@ -9,14 +9,14 @@ module.exports = class AutoService {
     if(auto === undefined){
       throw new Error ("Auto not defined")
     }
-
+    return this.autoRepository.save(auto);
   }
   
   async delete(auto){
     if(!(auto instanceof Auto)){
-      throw new Error("No se puede guarda un objeto que no se Auto")
+      throw new Error("No se puede guarda un objeto que no sea de tipo Auto")
     }
-
+    return this.autoRepository.delete(auto);
   }
   
   async getAll(){

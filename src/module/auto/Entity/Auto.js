@@ -6,9 +6,9 @@ module.exports = class Auto{
     anio,
     kms,
     color,
-    aireAcondicionado,
     pasajeros,
-    esAutomatico
+    esAutomatico,
+    aireAcondicionado
   }){
     this.id = id;
     this.marca = marca;

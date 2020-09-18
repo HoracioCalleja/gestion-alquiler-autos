@@ -1,4 +1,5 @@
 const AbstractController = require("../../abstractController");
+const { fromDataToEntity } = require ('../Maper/autoMapper');
 
 module.exports = class AutoController extends AbstractController {
   constructor(autoService) {
@@ -13,50 +14,63 @@ module.exports = class AutoController extends AbstractController {
     app.get(`${ROUTE}`, this.index.bind(this));
     app.get(`${ROUTE}/:id`, this.view.bind(this));
     app.post(`${ROUTE}/save`, this.save.bind(this));
+    app.get(`${ROUTE}/delete/:id`, this.delete.bind(this));
   }
 
   async index(req, res) {
-    try{
-      const autos = await this.autoService.getAll();
-      // let errors
-      // let { errors, messages } = req.session;
-      res.status(200).render("auto/view/index.html", {
-        data: {
-          autos,
-        },
-        // errors,
-        // messages
-      });
-      // res.status(200).send(autos);
-    } catch(e){
-      throw new Error(`Error : ${e.message}`)
-    }
+    const autos = await this.autoService.getAll();
+    // try{
+    //   let { errors, messages } = req.session;
+    // } catch(e){
+      
+    // }
+    res.status(200).render("auto/view/index.html", {
+      data: {
+        autos,
+      },
+      // errors,
+      // messages,
+    });
     // req.session.errors = [];
     // req.session.messages = [];
   }
 
   async view(req, res) {
-    try{
+    try {
       const { id } = req.params;
       const auto = await this.autoService.getById(id);
-      res.render("auto/view/form.html", {data : {
-        auto, 
-      }})
-    } catch(e){
-      throw new Error(`Error : ${e.message}`)
+      res.render("auto/view/form.html", {
+        data: {
+          auto,
+        },
+      });
+    } catch (e) {
+      throw new Error(`Error : ${e.message}`);
     }
-    // res.status(200).send(auto);
   }
 
-  async create(req,res) {
-    console.log("En create")
-    res.render("auto/view/form.html")
+  async create(req, res) {
+    console.log("En create");
+    res.render("auto/view/form.html");
   }
 
-  async save(req,res) {
-    const car = req.body;
-    console.log(req.body);
-    res.status(200).send(car)
+  async save(req, res) {
+    try {
+      let autoData = req.body;
+      let autoEntity = fromDataToEntity(autoData);
+      let savedAuto = await this.autoService.save(autoEntity);
+      console.log(savedAuto)
+      // if (auto.id) {
+      //   req.session.messages = [`Se actualizó el auto con el id ${auto.id}`];
+      // } else {
+      //   req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
+      // }
+      res.redirect("/auto");
+    } catch (e) {
+      console.log(e.message)
+      // req.session.errors = [e.message, e.stack];
+      res.redirect("/auto");
+    }
   }
 
   /**
@@ -65,15 +79,18 @@ module.exports = class AutoController extends AbstractController {
    */
 
   async delete(req, res) {
-    
     try {
       const { id } = req.params;
+      // console.log(id)
       const auto = await this.autoService.getById(id);
+      console.log(auto);
       await this.autoService.delete(auto);
-      req.session.messages = [`Se eliminó el auto con el id ${id}`];
+      // req.session.messages = [`Se eliminó el auto con el id ${id}`];
+      res.redirect("/auto"); 
     } catch (e) {
-      req.session.errors = [e.message];
-      res.redirect("/auto");
+      console.error(e);
+      // req.session.errors = [e.message];
+      res.redirect("/auto"); 
     }
   }
 };

@@ -28,6 +28,8 @@
       <th><span class="is-size-6">Pasajeros</span></th>
       <th><span class="is-size-6">Cambio automatico</span></th>
       <th><span class="is-size-6">Edit</span></th>
+      <th><span class="is-size-6">Delete</span></th>
+
     </tr>
   </thead>
   <tbody>
@@ -43,6 +45,7 @@
       <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
       <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
       <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}"><i class="fas fa-edit"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button" href="/auto/delete/{{auto.id}}"><i class="fas fa-trash"></i></a> </span></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -58,6 +61,7 @@
       <th><span class="is-size-6">Pasajeros</span></th>
       <th><span class="is-size-6">Cambio automatico</span></th>
       <th><span class="is-size-6">Edit</span></th>
+      <th><span class="is-size-6">Delete</span></th>
     </tr>
   </tfoot>
 </table>
