@@ -50,6 +50,7 @@ module.exports = class AutoModel extends Model {
         createdAt : "creado_en",
         sequelize : sequelizeInstance,
         modelName: "Auto",
+        tableName: "Autos",
         timestamps: true,
       }
     );
