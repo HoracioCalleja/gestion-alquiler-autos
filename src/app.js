@@ -21,7 +21,7 @@ app.use(express.json());
 
 const container = configureDI();
 
-// app.use(container.get("Session"));
+app.use(container.get("Session"));
 
 initAuto(app,container);
 

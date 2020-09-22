@@ -19,16 +19,16 @@ module.exports = class AutoController extends AbstractController {
 
   async index(req, res) {
     const autos = await this.autoService.getAll();
-      // let { errors, messages } = req.session;
+      let { errors, messages } = req.session;
     res.status(200).render("auto/view/index.html", {
       data: {
         autos,
-        // errors,
-        // messages,
+        errors,
+        messages,
       },
     });
-    // req.session.errors = [];
-    // req.session.messages = [];
+    req.session.errors = [];
+    req.session.messages = [];
   }
 
   async view(req, res) {
@@ -56,8 +56,8 @@ module.exports = class AutoController extends AbstractController {
       let autoEntity = fromDataToEntity(autoData);
       let savedAuto = await this.autoService.save(autoEntity);
       console.log(savedAuto)
-      if (savedAuto.id) {
-        req.session.messages = [`Se actualizó el auto con el id ${savedAuto.id}`];
+      if (autoEntity.id) {
+        req.session.messages = [`Se actualizó el auto con el id ${autoEntity.id}`];
         console.log(req.session.messages);
       } else {
         req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
@@ -78,7 +78,6 @@ module.exports = class AutoController extends AbstractController {
   async delete(req, res) {
     try {
       const { id } = req.params;
-      // console.log(id)
       const auto = await this.autoService.getById(id);
       console.log(auto);
       await this.autoService.delete(auto);
