@@ -1,19 +1,26 @@
 {% extends "view/layout/base.html" %}
-<!-- {% for message in messages %}
-<div class="container">
-  <div class="notification is-danger">
-    <p>{{message}}</p>
-  </div>
-</div>
-{% endfor %} {% for error in errors %}
-<div class="container">
-  <div class="notification is-danger">
-    <p>{{error}}</p>
-  </div>
-</div>
-{% endfor %}  -->
 
 {% block body %}
+
+
+{% for message in data.messages %}
+<div class="container my-3">
+  <div class="notification is-success">
+    <p>{{message}}</p>
+    <button class="delete is-small cerrar-notificacion"></button>
+  </div>
+</div>
+{% endfor %} 
+
+{% for error in data.errors %}
+<div class="container my-3 ">
+  <div class="notification is-danger">
+    <p>{{error}}</p>
+    <button class="delete is-small cerrar-notificacion"></button>
+  </div>
+</div>
+{% endfor %} 
+
 
 <table class="table is-fullwidth has-background-light has-text-centered	">
   <thead>
@@ -44,8 +51,8 @@
       <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
       <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
       <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
-      <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}"><i class="fas fa-edit"></i></a> </span></td>
-      <td><span class=" is-size-6"> <a class="button" href="/auto/delete/{{auto.id}}"><i class="fas fa-trash"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}" ><i class="fas fa-edit"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button action-delete" href="/auto/delete/{{auto.id}}" data-id="{{auto.id}}" data-marca="{{auto.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -68,3 +75,9 @@
 
   {% endblock %}
 </table>
+
+{% block footerscripts %}
+
+  <script src="/public/js/auto.index.js"></script>
+
+{% endblock %}

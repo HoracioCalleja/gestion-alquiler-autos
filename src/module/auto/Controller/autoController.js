@@ -19,17 +19,13 @@ module.exports = class AutoController extends AbstractController {
 
   async index(req, res) {
     const autos = await this.autoService.getAll();
-    // try{
-    //   let { errors, messages } = req.session;
-    // } catch(e){
-      
-    // }
+      // let { errors, messages } = req.session;
     res.status(200).render("auto/view/index.html", {
       data: {
         autos,
+        // errors,
+        // messages,
       },
-      // errors,
-      // messages,
     });
     // req.session.errors = [];
     // req.session.messages = [];
@@ -60,15 +56,16 @@ module.exports = class AutoController extends AbstractController {
       let autoEntity = fromDataToEntity(autoData);
       let savedAuto = await this.autoService.save(autoEntity);
       console.log(savedAuto)
-      // if (auto.id) {
-      //   req.session.messages = [`Se actualizó el auto con el id ${auto.id}`];
-      // } else {
-      //   req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
-      // }
+      if (savedAuto.id) {
+        req.session.messages = [`Se actualizó el auto con el id ${savedAuto.id}`];
+        console.log(req.session.messages);
+      } else {
+        req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
+      }
       res.redirect("/auto");
     } catch (e) {
       console.log(e.message)
-      // req.session.errors = [e.message, e.stack];
+      req.session.errors = [e.message, e.stack];
       res.redirect("/auto");
     }
   }
@@ -85,11 +82,11 @@ module.exports = class AutoController extends AbstractController {
       const auto = await this.autoService.getById(id);
       console.log(auto);
       await this.autoService.delete(auto);
-      // req.session.messages = [`Se eliminó el auto con el id ${id}`];
+      req.session.messages = [`Se eliminó el auto con el id ${id}`];
       res.redirect("/auto"); 
     } catch (e) {
       console.error(e);
-      // req.session.errors = [e.message];
+      req.session.errors = [e.message];
       res.redirect("/auto"); 
     }
   }
