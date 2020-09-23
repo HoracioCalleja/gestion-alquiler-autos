@@ -1,0 +1,83 @@
+{% extends "view/layout/base.html" %}
+
+{% block body %}
+
+
+{% for message in data.messages %}
+<div class="container my-3">
+  <div class="notification is-success">
+    <p>{{message}}</p>
+    <button class="delete is-medium cerrar-notificacion"></button>
+  </div>
+</div>
+{% endfor %} 
+
+{% for error in data.errors %}
+<div class="container my-3 ">
+  <div class="notification is-danger">
+    <p>{{error}}</p>
+    <button class="delete is-medium cerrar-notificacion"></button>
+  </div>
+</div>
+{% endfor %} 
+
+
+<table class="table is-fullwidth has-background-light has-text-centered	">
+  <thead>
+    <tr>
+      <th><span class="is-size-6">ID</span></th>
+      <th><span class="is-size-6">Marca</span></th>
+      <th><span class="is-size-6">Modelo</span></th>
+      <th><span class="is-size-6">Año</span></th>
+      <th><span class="is-size-6">Kms</span></th>
+      <th><span class="is-size-6">Color</span></th>
+      <th><span class="is-size-6">A/C</span></th>
+      <th><span class="is-size-6">Pasajeros</span></th>
+      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Edit</span></th>
+      <th><span class="is-size-6">Delete</span></th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for auto in data.autos %} 
+    <tr class="has-background-grey-dark has-text-white">
+      <td><span class="is-size-6">{{auto.id}}</span></td>
+      <td><span class="is-size-6">{{auto.marca}}</span></td>
+      <td><span class="is-size-6">{{auto.modelo}}</span></td>
+      <td><span class="is-size-6">{{auto.anio}}</span></td>
+      <td><span class="is-size-6">{{auto.kms}}</span></td>
+      <td><span class="is-size-6">{{auto.color}}</span></td>
+      <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
+      <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
+      <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
+      <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}" ><i class="fas fa-edit"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button action-delete" href="/auto/delete/{{auto.id}}" data-id="{{auto.id}}" data-marca="{{auto.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th><span class="is-size-6">ID</span></th>
+      <th><span class="is-size-6">Marca</span></th>
+      <th><span class="is-size-6">Modelo</span></th>
+      <th><span class="is-size-6">Año</span></th>
+      <th><span class="is-size-6">Kms</span></th>
+      <th><span class="is-size-6">Color</span></th>
+      <th><span class="is-size-6">A/C</span></th>
+      <th><span class="is-size-6">Pasajeros</span></th>
+      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Edit</span></th>
+      <th><span class="is-size-6">Delete</span></th>
+    </tr>
+  </tfoot>
+</table>
+
+  {% endblock %}
+</table>
+
+{% block footerscripts %}
+
+  <script src="/public/js/auto.index.js"></script>
+
+{% endblock %}

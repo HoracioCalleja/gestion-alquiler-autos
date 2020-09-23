@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require ('express');
 const configureDI = require ('./config/di')
 const { init : initAuto } = require ('./module/auto/module');
+const { init : initCliente } = require('./module/cliente/module');
 const nunjucks = require ('nunjucks');
 
 const app = express();
@@ -24,6 +25,7 @@ const container = configureDI();
 app.use(container.get("Session"));
 
 initAuto(app,container);
+initCliente(app, container);
 
 const controller = container.get("AutoController");
 

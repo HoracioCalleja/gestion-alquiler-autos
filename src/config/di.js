@@ -1,6 +1,8 @@
 const { default : DIContainer , object , get,  factory } = require ('rsdi');
 const { Sequelize } = require('sequelize');
 const { AutoController , AutoService , AutoModel , AutoRepository } = require ('../module/auto/module');
+const { ClienteController, ClienteService, ClienteModel, ClienteRepository } = require ("../module/cliente/module");
+
 const session = require('express-session');
 const SequelizeStore = require ('connect-session-sequelize')(session.Store);
 
@@ -25,6 +27,20 @@ function configureSessionSequelizeDatabase() {
 function configureAutoModel(container){
   AutoModel.setUp(container.get("Sequelize"));
   return AutoModel;
+}
+
+function configureClienteModel(container){
+  ClienteModel.setUp(container.get("Sequelize"));
+  return ClienteModel;
+}
+
+function configurClienteDefinitions(container){
+  container.addDefinitions({
+    ClienteModel : factory(configureClienteModel),
+    ClienteRepository : object(ClienteRepository).construct(get("ClienteModel")),
+    ClienteService : object(ClienteService).construct(get("ClienteRepository")),
+    ClienteController : object(ClienteController).construct(get("ClienteService")),
+  });
 }
 
 function configureAutoDefinitions(container){
@@ -61,7 +77,8 @@ function configureCommonDefinitions(container){
 module.exports = function configureDI () {
   const container = new DIContainer();
   configureCommonDefinitions(container);  
-  configureAutoDefinitions(container);  
+  configureAutoDefinitions(container);
+  configurClienteDefinitions(container);  
   return container;
 }
 

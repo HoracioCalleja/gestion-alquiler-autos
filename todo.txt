@@ -1,5 +1,17 @@
 TODO: 
-- INSTALLAR EXPRESS-SESSION
-- CONFIGURAR EXPRESS-SESSION
-- AGREGAR LA DEFINICION EN EL DI.JS
-- AGREGAR MODULO DE USUARIO
+
+Hacer las vistas del Cliente para permitir crearlo, editarlo, guardarlo y eliminarlo
+
+Crear el modulo
+
+Se deben poder gestionar alquileres manualmente
+. El alquiler se realiza entre 1 auto (máximo) y 1 cliente (máximo)
+. Crear modulo de alquiler
+. La tabla de alquileres debe guardar los registros:
+Auto
+Cliente
+Precio unitario (el precio de alquiler por dia)
+Fecha desde
+Fecha hasta
+Medio de pago (efectivo o tarjeta)
+Si el alquiler está pago (booleano)

@@ -24,7 +24,7 @@ module.exports = class AutoRepository extends AbstractRepository{
   
   async getAll(){
     const autos = await AutoModel.findAll();
-    return autos.map(fromModelToEntity)
+    return autos.map((auto) => fromModelToEntity(auto));
   }
   
   async getById(id){
