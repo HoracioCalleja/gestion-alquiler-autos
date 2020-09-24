@@ -1,13 +1,17 @@
-{% extends "view/layout/base.html" %} {% block body %}
+{% extends "view/layout/base.html" %} 
+
+
+{% block body %}
 
 <!-- TODO : form  -->
 
-{% set auto = data.auto %}
+{% set cliente = data.cliente %}
 
 <div class="hero">
   <div class="hero-body">
     <p class="level-item is-size-4 has-text-centered has-text-weight-bold">
-      {% if auto.id %} Editando Auto con ID : {{auto.id}} {% else %} Nuevo auto
+      {% if cliente.id %} Editando cliente con ID : {{cliente.id}} 
+      {% else %} Nuevo cliente
       {% endif %}
     </p>
   </div>
@@ -15,33 +19,34 @@
 
 <hr />
 
+
 <section class="section">
-  <form action="/auto/save" method="POST">
-    <input type="hidden" name="id" value="{{auto.id}}">
+  <form action="/cliente/save" method="POST">
+    <input type="hidden" name="id" value="{{cliente.id}}">
     <div class="container has-text-centered">
       <div class="field">
       <div class="field-body">
         <div class="field">
-          <label for="" class="label is-size-5">Marca</label>
+          <label for="" class="label is-size-5">Nombre</label>
           <p class="control is-expanded">
             <input
               class="input has-text-centered"
               type="text"
-              name="marca"
-              value="{{auto.marca}}"
-              placeholder="Ej: Renault"
+              name="nombre"
+              value="{{cliente.nombre}}"
+              placeholder="Ej: Juan"
               required
             />
           </p>
         </div>
         <div class="field">
-          <label for="" class="label is-size-5">Modelo</label>
+          <label for="" class="label is-size-5">Apellido</label>
           <p class="control is-expanded">
             <input
               class="input has-text-centered"
               type="text"
-              name="modelo"
-              value="{{auto.modelo}}"
+              name="apellido"
+              value="{{cliente.apellido}}"
               placeholder="Ej: Super candy"
               required
             />
@@ -50,97 +55,99 @@
       </div>
       <div class="field-body pt-5">
         <div class="field">
-          <label for="" class="label is-size-5">Kilometros</label>
-          <p class="control is-expanded">
-            <input
-              class="input has-text-centered"
-              type="number"
-              name="kms"
-              value="{{auto.kms}}"
-              placeholder="Ej: 30000"
-              required
-            />
-          </p>
-        </div>
-        <div class="field">
-          <label for="" class="label is-size-5">Año</label>
-          <p class="control is-expanded">
-            <input
-              class="input has-text-centered"
-              type="number"
-              name="anio"
-              value="{{auto.anio}}"
-              placeholder="Ej: 2014"
-              required
-            />
-          </p>
-        </div>
-      </div>
-      <div class="field-body pt-5">
-        <div class="field">
-          <label for="" class="label is-size-5">Color</label>
+          <label for="" class="label is-size-5">Tipo de documento</label>
           <p class="control is-expanded">
             <input
               class="input has-text-centered"
               type="text"
-              name="color"
-              placeholder="Ej: Negro"
-              value="{{auto.color}}"
+              name="tipo-documento"
+              value="{{cliente.tipoDocumento}}"
+              placeholder="Ej: DNI"
+              required
             />
           </p>
         </div>
         <div class="field">
-          <label class="label is-size-5">Pasajeros</label>
+          <label for="" class="label is-size-5">Nro documento</label>
           <p class="control is-expanded">
             <input
-              required
               class="input has-text-centered"
               type="number"
-              name="pasajeros"
-              placeholder="Ej: 3"
-              value="{{auto.pasajeros}}"
+              name="numero-documento"
+              value="{{cliente.numeroDocumento}}"
+              placeholder="Ej: 44.361.644"
+              required
             />
           </p>
         </div>
       </div>
       <div class="field-body pt-5">
         <div class="field">
-          <label class="label is-size-5">Es automático</label>
-          <div class="control is-expanded">
-            <div class="select is-rounded">
-              <select name="esAutomatico" required class="is-hoverable">
-                {% if auto.esAutomatico %}
-                <option value="true" selected>Si</option>
-                <option value="false">No</option>
-                {% elif not auto.esAutomatico %}
-                <option value="true">Si</option>
-                <option value="false" selected>No</option>
-                {% else %}
-                <option value="true">Si</option>
-                <option value="false">No</option>
-                {% endif %}
-              </select>
-            </div>
-          </div>
+          <label for="" class="label is-size-5">Nacionalidad</label>
+          <p class="control is-expanded">
+            <input
+              class="input has-text-centered"
+              type="text"
+              name="nacionalidad"
+              placeholder="Ej: Negro"
+              value="{{cliente.nacionalidad}}"
+            />
+          </p>
         </div>
         <div class="field">
-          <label class="label is-size-5">Tiene aire acondicionado</label>
-          <div class="control is-expanded">
-            <div class="select is-rounded">
-              <select name="aireAcondicionado" required class="is-hoverable">
-                {% if auto.aireAcondicionado %}
-                <option value="true" selected>Si</option>
-                <option value="false">No</option>
-                {% elif not auto.aireAcondicionado %}
-                <option value="true">Si</option>
-                <option value="false" selected>No</option>
-                {% else %}
-                <option value="true">Si</option>
-                <option value="false">No</option>
-                {% endif %}
-              </select>
-            </div>
-          </div>
+          <label class="label is-size-5">Dirección</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="text"
+              name="direccion"
+              placeholder="Ej: San martin 450 3b"
+              value="{{cliente.direccion}}"
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label class="label is-size-5">Teléfono</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="tel"
+              name="telefono"
+              placeholder="Ej: 1134301887"
+              value="{{cliente.telefono}}"
+            />
+          </p>
+        </div>
+        <div class="field">
+          <label class="label is-size-5">Email</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="email"
+              name="email"
+              placeholder="Ej: juan@gmail.com"
+              value="{{cliente.email}}"
+            />
+          </p>
+        </div>
+      </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label class="label is-size-5">Fecha de nacimiento</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="date"
+              name="fecha-nacimiento"
+              value="{{cliente.fechaNacimiento}}"
+            />
+          </p>
         </div>
       </div>
       <div class="field is-grouped pt-5 is-grouped-centered">
@@ -152,7 +159,7 @@
           />
         </p>
         <p class="control">
-          <a class="button is-light is-large" href="/auto"> Cancel </a>
+          <a class="button is-light is-large" href="/cliente"> Cancel </a>
         </p>
       </div>
       </div>

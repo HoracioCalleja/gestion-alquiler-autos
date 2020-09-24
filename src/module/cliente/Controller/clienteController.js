@@ -1,5 +1,5 @@
 const AbstractController = require("../../abstractController");
-const { fromDataToEntity } = require ('../Maper/clienteMapper');
+const { fromDataToEntity } = require("../Maper/clienteMapper");
 
 module.exports = class ClienteController extends AbstractController {
   constructor(clienteService) {
@@ -18,20 +18,18 @@ module.exports = class ClienteController extends AbstractController {
   }
 
   async index(req, res) {
-   
-    res.status(200).send("Hello client")
-
-    // const clientes = await this.clienteService.getAll();
-    //   let { errors, messages } = req.session;
-    // res.status(200).render("cliente/view/index.html", {
-    //   data: {
-    //     clientes,
-    //     errors,
-    //     messages,
-    //   },
-    // });
-    // req.session.errors = [];
-    // req.session.messages = [];
+    // res.status(200).send("Hello client")
+    const clientes = await this.clienteService.getAll();
+    let { errors, messages } = req.session;
+    res.status(200).render("cliente/view/index.html", {
+      data: {
+        clientes,
+        errors,
+        messages,
+      },
+    });
+    req.session.errors = [];
+    req.session.messages = [];
   }
 
   async view(req, res) {
@@ -50,28 +48,32 @@ module.exports = class ClienteController extends AbstractController {
   }
 
   async create(req, res) {
-    console.log("En create");
     res.render("cliente/view/form.html");
   }
 
   async save(req, res) {
     try {
       let clienteData = req.body;
+      // clienteData["fecha-nacimiento"] = `"${clienteData["fecha-nacimiento"]}"`;
       let clienteEntity = fromDataToEntity(clienteData);
       let savedCliente = await this.clienteService.save(clienteEntity);
-      console.log(savedCliente)
+      console.log(savedCliente);
       if (clienteEntity.id) {
-        req.session.messages = [`Se actualizó el cliente con el id ${clienteEntity.id}`];
-        console.log(req.session.messages);
+        req.session.messages = [
+          `Se actualizó el cliente con el id ${clienteEntity.id}`,
+        ];
+        // console.log(req.session.messages);
       } else {
-        req.session.messages = [`Se creó el cliente con el id ${savedCliente.id}`];
+        req.session.messages = [
+          `Se creó el cliente con el id ${savedCliente.id}`,
+        ];
       }
-      // res.redirect("/cliente");
+      res.redirect("/cliente");
       res.status(200).send(`Hola ${clienteEntity.nombre}`);
     } catch (e) {
-      console.log(e.message)
+      console.log(e.message);
       req.session.errors = [e.message, e.stack];
-      // res.redirect("/cliente");
+      res.redirect("/cliente");
     }
   }
 
@@ -87,12 +89,12 @@ module.exports = class ClienteController extends AbstractController {
       // console.log(cliente);
       await this.clienteService.delete(cliente);
       req.session.messages = [`Se eliminó el cliente con el id ${id}`];
-      res.status(200).send(`Cliente con ID: ${id} eliminado.`)
-      // res.redirect("/cliente"); 
+      res.status(200).send(`Cliente con ID: ${id} eliminado.`);
+      // res.redirect("/cliente");
     } catch (e) {
       console.error(e);
       req.session.errors = [e.message];
-      // res.redirect("/cliente"); 
+      // res.redirect("/cliente");
     }
   }
 };

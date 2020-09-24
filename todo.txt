@@ -1,7 +1,7 @@
 TODO: 
 
 Hacer las vistas del Cliente para permitir crearlo, editarlo, guardarlo y eliminarlo
-
+(mejorar la vista de creacion con los selects, poder editar y eliminar)
 Crear el modulo
 
 Se deben poder gestionar alquileres manualmente

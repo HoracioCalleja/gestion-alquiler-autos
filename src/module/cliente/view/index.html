@@ -21,52 +21,67 @@
 </div>
 {% endfor %} 
 
+<div class="level">
+
+    <div class="level-item has-item-centered">
+      <a href="/cliente/create" class="button">
+        <span class="icon is-medium">
+          <i class="fas fa-plus-circle"></i>
+        </span>
+        <span>Nuevo cliente</span>
+      </a>
+    </div>
+
+</div>
 
 <table class="table is-fullwidth has-background-light has-text-centered	">
   <thead>
     <tr>
       <th><span class="is-size-6">ID</span></th>
-      <th><span class="is-size-6">Marca</span></th>
-      <th><span class="is-size-6">Modelo</span></th>
-      <th><span class="is-size-6">Año</span></th>
-      <th><span class="is-size-6">Kms</span></th>
-      <th><span class="is-size-6">Color</span></th>
-      <th><span class="is-size-6">A/C</span></th>
-      <th><span class="is-size-6">Pasajeros</span></th>
-      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Nombre</span></th>
+      <th><span class="is-size-6">Apellido</span></th>
+      <th><span class="is-size-6">Tipo de documento</span></th>
+      <th><span class="is-size-6">Nro de documento</span></th>
+      <th><span class="is-size-6">Nacionalidad</span></th>
+      <th><span class="is-size-6">Direccion</span></th>
+      <th><span class="is-size-6">Teléfono</span></th>
+      <th><span class="is-size-6">Email</span></th>
+      <th><span class="is-size-6">Fecha de nacimiento</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
 
     </tr>
   </thead>
   <tbody>
-  {% for auto in data.autos %} 
+  {% for cliente in data.clientes %} 
     <tr class="has-background-grey-dark has-text-white">
-      <td><span class="is-size-6">{{auto.id}}</span></td>
-      <td><span class="is-size-6">{{auto.marca}}</span></td>
-      <td><span class="is-size-6">{{auto.modelo}}</span></td>
-      <td><span class="is-size-6">{{auto.anio}}</span></td>
-      <td><span class="is-size-6">{{auto.kms}}</span></td>
-      <td><span class="is-size-6">{{auto.color}}</span></td>
-      <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
-      <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
-      <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
-      <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}" ><i class="fas fa-edit"></i></a> </span></td>
-      <td><span class=" is-size-6"> <a class="button action-delete" href="/auto/delete/{{auto.id}}" data-id="{{auto.id}}" data-marca="{{auto.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
+      <td><span class="is-size-6">{{cliente.id}}</span></td>
+      <td><span class="is-size-6">{{cliente.nombre}}</span></td>
+      <td><span class="is-size-6">{{cliente.apellido}}</span></td>
+      <td><span class="is-size-6">{{cliente.tipoDocumento}}</span></td>
+      <td><span class="is-size-6">{{cliente.numeroDocumento}}</span></td>
+      <td><span class="is-size-6">{{cliente.nacionalidad}}</span></td>
+      <td><span class="is-size-6">{{cliente.direccion}}</span></td>
+      <td><span class="is-size-6">{{cliente.telefono}}</span></td>
+      <td><span class="is-size-6">{{cliente.email}}</span></td>
+      <td><span class="is-size-6">{{cliente.fechaNacimiento}}</span></td>
+      <td><span class=" is-size-6"> <a class="button" href="/cliente/{{cliente.id}}" ><i class="fas fa-edit"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button action-delete" href="/cliente/delete/{{cliente.id}}" data-id="{{cliente.id}}" data-marca="{{cliente.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
     </tr>
     {% endfor %}
   </tbody>
   <tfoot>
     <tr>
       <th><span class="is-size-6">ID</span></th>
-      <th><span class="is-size-6">Marca</span></th>
-      <th><span class="is-size-6">Modelo</span></th>
-      <th><span class="is-size-6">Año</span></th>
-      <th><span class="is-size-6">Kms</span></th>
-      <th><span class="is-size-6">Color</span></th>
-      <th><span class="is-size-6">A/C</span></th>
-      <th><span class="is-size-6">Pasajeros</span></th>
-      <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Nombre</span></th>
+      <th><span class="is-size-6">Apellido</span></th>
+      <th><span class="is-size-6">Tipo de documento</span></th>
+      <th><span class="is-size-6">Nro de documento</span></th>
+      <th><span class="is-size-6">Nacionalidad</span></th>
+      <th><span class="is-size-6">Direccion</span></th>
+      <th><span class="is-size-6">Teléfono</span></th>
+      <th><span class="is-size-6">Email</span></th>
+      <th><span class="is-size-6">Fecha de nacimiento</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
     </tr>
@@ -78,6 +93,6 @@
 
 {% block footerscripts %}
 
-  <script src="/public/js/auto.index.js"></script>
+  <script src="/public/js/cliente.index.js"></script>
 
 {% endblock %}
