@@ -1,8 +1,16 @@
 TODO: 
 
-Hacer las vistas del Cliente para permitir crearlo, editarlo, guardarlo y eliminarlo
-(mejorar la vista de creacion con los selects, poder editar y eliminar)
-Crear el modulo
+- Auto:
+
+Agregar los inputs en el form para ingresar los nuevos datos
+
+Syncronizar la bd
+
+---------------
+
+- Alquiler:
+
+Crear el modulo de Alquiler
 
 Se deben poder gestionar alquileres manualmente
 . El alquiler se realiza entre 1 auto (máximo) y 1 cliente (máximo)
