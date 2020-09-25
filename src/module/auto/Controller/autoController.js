@@ -1,5 +1,5 @@
 const AbstractController = require("../../abstractController");
-const { fromDataToEntity } = require ('../Maper/autoMapper');
+const { fromDataToEntity } = require("../Maper/autoMapper");
 
 module.exports = class AutoController extends AbstractController {
   constructor(autoService) {
@@ -19,7 +19,7 @@ module.exports = class AutoController extends AbstractController {
 
   async index(req, res) {
     const autos = await this.autoService.getAll();
-      let { errors, messages } = req.session;
+    let { errors, messages } = req.session;
     res.status(200).render("auto/view/index.html", {
       data: {
         autos,
@@ -57,7 +57,9 @@ module.exports = class AutoController extends AbstractController {
       let savedAuto = await this.autoService.save(autoEntity);
       // console.log(savedAuto)
       if (autoEntity.id) {
-        req.session.messages = [`Se actualizó el auto con el id ${autoEntity.id}`];
+        req.session.messages = [
+          `Se actualizó el auto con el id ${autoEntity.id}`,
+        ];
         // console.log(req.session.messages);
       } else {
         req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
@@ -82,11 +84,11 @@ module.exports = class AutoController extends AbstractController {
       // console.log(auto);
       await this.autoService.delete(auto);
       req.session.messages = [`Se eliminó el auto con el id ${id}`];
-      res.redirect("/auto"); 
+      res.redirect("/auto");
     } catch (e) {
       // console.error(e);
       req.session.errors = [e.message];
-      res.redirect("/auto"); 
+      res.redirect("/auto");
     }
   }
 };

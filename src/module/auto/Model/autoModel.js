@@ -36,18 +36,18 @@ module.exports = class AutoModel extends Model {
           allowNull: false,
           get() {
             const tiene = this.getDataValue("aireAcondicionado");
-            console.log("En el get de aire",tiene);
-            return tiene ? "Si" : "No"
+            console.log("En el get de aire", tiene);
+            return tiene ? "Si" : "No";
           },
           set(value) {
-            console.log("En el set de aire: ",value);
+            console.log("En el set de aire: ", value);
 
-            if (value === "1"){
-              this.setDataValue("aireAcondicionado",true)
+            if (value === "1") {
+              this.setDataValue("aireAcondicionado", true);
             } else {
-              this.setDataValue("aireAcondicionado",false)
+              this.setDataValue("aireAcondicionado", false);
             }
-          }
+          },
         },
         pasajeros: {
           type: DataTypes.INTEGER,
@@ -59,17 +59,17 @@ module.exports = class AutoModel extends Model {
           allowNull: false,
           get() {
             const esCambioAutomatico = this.getDataValue("esAutomatico");
-            console.log("En el get de cambio: ",esCambioAutomatico);
-            return esCambioAutomatico ? "Si" : "No"
+            console.log("En el get de cambio: ", esCambioAutomatico);
+            return esCambioAutomatico ? "Si" : "No";
           },
           set(value) {
-            console.log("Set de cambio: ",value);
-            if (value === "1"){
-              this.setDataValue("esAutomatico",true)
+            console.log("Set de cambio: ", value);
+            if (value === "1") {
+              this.setDataValue("esAutomatico", true);
             } else {
-              this.setDataValue("esAutomatico",false)
+              this.setDataValue("esAutomatico", false);
             }
-          }
+          },
         },
         activo: {
           type: DataTypes.BOOLEAN,
@@ -79,11 +79,11 @@ module.exports = class AutoModel extends Model {
         rentado: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
-          defaultValue : false,
+          defaultValue: false,
         },
-        precioPorDia : {
-          type : DataTypes.INTEGER,
-          allowNull : false,
+        precioPorDia: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
         },
       },
       {
@@ -97,6 +97,5 @@ module.exports = class AutoModel extends Model {
     );
 
     return AutoModel;
-
   }
 };
