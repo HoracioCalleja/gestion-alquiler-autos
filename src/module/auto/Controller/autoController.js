@@ -46,7 +46,7 @@ module.exports = class AutoController extends AbstractController {
   }
 
   async create(req, res) {
-    console.log("En create");
+    // console.log("En create");
     res.render("auto/view/form.html");
   }
 
@@ -55,16 +55,16 @@ module.exports = class AutoController extends AbstractController {
       let autoData = req.body;
       let autoEntity = fromDataToEntity(autoData);
       let savedAuto = await this.autoService.save(autoEntity);
-      console.log(savedAuto)
+      // console.log(savedAuto)
       if (autoEntity.id) {
         req.session.messages = [`Se actualizó el auto con el id ${autoEntity.id}`];
-        console.log(req.session.messages);
+        // console.log(req.session.messages);
       } else {
         req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
       }
       res.redirect("/auto");
     } catch (e) {
-      console.log(e.message)
+      // console.log(e.message)
       req.session.errors = [e.message, e.stack];
       res.redirect("/auto");
     }
@@ -79,12 +79,12 @@ module.exports = class AutoController extends AbstractController {
     try {
       const { id } = req.params;
       const auto = await this.autoService.getById(id);
-      console.log(auto);
+      // console.log(auto);
       await this.autoService.delete(auto);
       req.session.messages = [`Se eliminó el auto con el id ${id}`];
       res.redirect("/auto"); 
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       req.session.errors = [e.message];
       res.redirect("/auto"); 
     }

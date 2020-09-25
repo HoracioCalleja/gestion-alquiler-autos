@@ -23,8 +23,8 @@ function fromDataToEntity({
     kms,
     color,
     pasajeros,
-    esAutomatico : eval(esAutomatico),
-    aireAcondicionado : eval(aireAcondicionado),
+    esAutomatico ,
+    aireAcondicionado  ,
   })
 }
 

@@ -108,17 +108,10 @@
           <label class="label is-size-5">Es automático</label>
           <div class="control is-expanded">
             <div class="select is-rounded">
-              <select name="esAutomatico" required class="is-hoverable">
-                {% if auto.esAutomatico %}
-                <option value="true" selected>Si</option>
-                <option value="false">No</option>
-                {% elif not auto.esAutomatico %}
-                <option value="true">Si</option>
-                <option value="false" selected>No</option>
-                {% else %}
-                <option value="true">Si</option>
-                <option value="false">No</option>
-                {% endif %}
+              <select name="esAutomatico" required class="is-hoverable has-text-centered">
+                <option {{"selected" if auto.id}}>Seleccione</option>
+                <option value="1" {{ "selected" if auto.esAutomatico === "Si"}}>Si</option>
+                <option value="0" {{"selected" if auto.esAutomatico === "No" }}>No</option>
               </select>
             </div>
           </div>
@@ -127,17 +120,10 @@
           <label class="label is-size-5">Tiene aire acondicionado</label>
           <div class="control is-expanded">
             <div class="select is-rounded">
-              <select name="aireAcondicionado" required class="is-hoverable">
-                {% if auto.aireAcondicionado %}
-                <option value="true" selected>Si</option>
-                <option value="false">No</option>
-                {% elif not auto.aireAcondicionado %}
-                <option value="true">Si</option>
-                <option value="false" selected>No</option>
-                {% else %}
-                <option value="true">Si</option>
-                <option value="false">No</option>
-                {% endif %}
+              <select name="aireAcondicionado" required class="is-hoverable has-text-centered">
+                <option {{"selected" if auto.id}}>Seleccione</option>
+                <option value="1" {{"selected" if auto.aireAcondicionado === "Si" }} selected> Si </option>
+                <option value="0" {{"selected" if auto.aireAcondicionado === "No" }}> No </option>
               </select>
             </div>
           </div>
