@@ -1,11 +1,5 @@
 TODO: 
 
-- Auto:
-
-Agregar los inputs en el form para ingresar los nuevos datos
-
-Syncronizar la bd
-
 ---------------
 
 - Alquiler:

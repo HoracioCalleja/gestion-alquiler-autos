@@ -12,8 +12,10 @@ document.querySelectorAll(".action-delete").forEach(($deleteAction) => {
 
 document.querySelectorAll(".cerrar-notificacion").forEach($cerrar => {
   $cerrar.addEventListener("click", (e) => {
-    const $container = document.querySelector(".container");
+    const $container = document.querySelector(".container-fluid");
     const parent = $container.parentNode;
     parent.removeChild($container)
   })
 })
+  
+

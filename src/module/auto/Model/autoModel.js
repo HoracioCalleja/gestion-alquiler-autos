@@ -36,12 +36,9 @@ module.exports = class AutoModel extends Model {
           allowNull: false,
           get() {
             const tiene = this.getDataValue("aireAcondicionado");
-            console.log("En el get de aire", tiene);
             return tiene ? "Si" : "No";
           },
           set(value) {
-            console.log("En el set de aire: ", value);
-
             if (value === "1") {
               this.setDataValue("aireAcondicionado", true);
             } else {
@@ -59,11 +56,9 @@ module.exports = class AutoModel extends Model {
           allowNull: false,
           get() {
             const esCambioAutomatico = this.getDataValue("esAutomatico");
-            console.log("En el get de cambio: ", esCambioAutomatico);
             return esCambioAutomatico ? "Si" : "No";
           },
           set(value) {
-            console.log("Set de cambio: ", value);
             if (value === "1") {
               this.setDataValue("esAutomatico", true);
             } else {
@@ -75,15 +70,40 @@ module.exports = class AutoModel extends Model {
           type: DataTypes.BOOLEAN,
           allowNull: false,
           defaultValue: true,
+          get() {
+            const estaActivo = this.getDataValue("activo");
+            return estaActivo ? "Si" : "No";
+          },
+          set(value) {
+            if (value === "1") {
+              this.setDataValue("activo", true);
+            } else {
+              this.setDataValue("activo", false);
+            }
+          },
         },
         rentado: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
           defaultValue: false,
+          get() {
+            const estaRentado = this.getDataValue("rentado");
+            return estaRentado ? "Si" : "No";
+          },
+          set(value) {
+            if (value === "1") {
+              this.setDataValue("rentado", true);
+            } else {
+              this.setDataValue("rentado", false);
+            }
+          },
         },
         precioPorDia: {
-          type: DataTypes.INTEGER,
+          type : DataTypes.INTEGER,
           allowNull: false,
+          get(){
+            return `$${this.getDataValue("precioPorDia")}`
+          }
         },
       },
       {
@@ -98,4 +118,7 @@ module.exports = class AutoModel extends Model {
 
     return AutoModel;
   }
+
+
+
 };

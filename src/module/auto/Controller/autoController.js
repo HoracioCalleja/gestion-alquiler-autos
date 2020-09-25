@@ -51,9 +51,12 @@ module.exports = class AutoController extends AbstractController {
   }
 
   async save(req, res) {
+    // res.send(req.body);
     try {
       let autoData = req.body;
+      console.log("From post: ",autoData);
       let autoEntity = fromDataToEntity(autoData);
+      console.log("From map: ",autoEntity);
       let savedAuto = await this.autoService.save(autoEntity);
       // console.log(savedAuto)
       if (autoEntity.id) {

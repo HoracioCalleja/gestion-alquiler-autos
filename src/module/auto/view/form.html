@@ -122,13 +122,53 @@
             <div class="select is-rounded">
               <select name="aireAcondicionado" required class="is-hoverable has-text-centered">
                 <option {{"selected" if auto.id}}>Seleccione</option>
-                <option value="1" {{"selected" if auto.aireAcondicionado === "Si" }} selected> Si </option>
+                <option value="1" {{"selected" if auto.aireAcondicionado === "Si" }}> Si </option>
                 <option value="0" {{"selected" if auto.aireAcondicionado === "No" }}> No </option>
               </select>
             </div>
           </div>
         </div>
+        <div class="field">
+          <label class="label is-size-5">Activo</label>
+          <div class="control is-expanded">
+            <div class="select is-rounded">
+              <select name="activo" required class="is-hoverable has-text-centered">
+                <option {{"selected" if auto.id}}>Seleccione</option>
+                <option value="1" {{ "selected" if auto.activo === "Si"}}>Si</option>
+                <option value="0" {{"selected" if auto.activo === "No" }}>No</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label is-size-5">Rentado</label>
+          <div class="control is-expanded">
+            <div class="select is-rounded">
+              <select name="rentado" required class="is-hoverable has-text-centered">
+                <option {{"selected" if auto.id}}>Seleccione</option>
+                <option value="1" {{"selected" if auto.rentado === "Si" }}> Si </option>
+                <option value="0" {{"selected" if auto.rentado === "No" }}> No </option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="field-body pt-5">
+        <div class="field">
+          <label class="label is-size-5">Precio por día</label>
+          <p class="control is-expanded">
+            <input
+              required
+              class="input has-text-centered"
+              type="number"
+              name="precio-dia"
+              placeholder="Ej: 1000"
+              value="{{auto.precioPorDia}}"
+            />
+          </p>
+        </div>
+      </div>
+      
       <div class="field is-grouped pt-5 is-grouped-centered">
         <p class="control">
           <input

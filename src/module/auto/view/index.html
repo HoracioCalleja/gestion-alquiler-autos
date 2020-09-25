@@ -4,8 +4,8 @@
 
 
 {% for message in data.messages %}
-<div class="container my-3">
-  <div class="notification is-success">
+<div class="container-fluid my-3">
+  <div class="notification is-success has-text-centered">
     <p>{{message}}</p>
     <button class="delete is-medium cerrar-notificacion"></button>
   </div>
@@ -13,8 +13,8 @@
 {% endfor %} 
 
 {% for error in data.errors %}
-<div class="container my-3 ">
-  <div class="notification is-danger">
+<div class="container-fluid my-3 ">
+  <div class="notification is-danger has-text-centered">
     <p>{{error}}</p>
     <button class="delete is-medium cerrar-notificacion"></button>
   </div>
@@ -47,6 +47,9 @@
       <th><span class="is-size-6">A/C</span></th>
       <th><span class="is-size-6">Pasajeros</span></th>
       <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Activo</span></th>
+      <th><span class="is-size-6">Rentado</span></th>
+      <th><span class="is-size-6">Precio por día</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
 
@@ -64,6 +67,9 @@
       <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
       <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
       <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
+      <td><span class="is-size-6">{{auto.activo}}</span></td>
+      <td><span class="is-size-6">{{auto.rentado}}</span></td>
+      <td><span class="is-size-6">{{auto.precioPorDia}}</span></td>
       <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}" ><i class="fas fa-edit"></i></a> </span></td>
       <td><span class=" is-size-6"> <a class="button action-delete" href="/auto/delete/{{auto.id}}" data-id="{{auto.id}}" data-marca="{{auto.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
     </tr>
@@ -80,6 +86,9 @@
       <th><span class="is-size-6">A/C</span></th>
       <th><span class="is-size-6">Pasajeros</span></th>
       <th><span class="is-size-6">Cambio automatico</span></th>
+      <th><span class="is-size-6">Activo</span></th>
+      <th><span class="is-size-6">Rentado</span></th>
+      <th><span class="is-size-6">Precio por día</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
     </tr>
