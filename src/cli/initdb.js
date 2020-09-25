@@ -13,6 +13,7 @@ const container = configureDI(app);
   const autoModel = container.get("AutoModel");
   const clienteModel = container.get("ClienteModel");
 
+  // mainDB.sync({force : true});
   mainDB.sync();
   
   const sessionDB = container.get("SessionSequelize");
