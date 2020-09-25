@@ -18,7 +18,6 @@ module.exports = class ClienteController extends AbstractController {
   }
 
   async index(req, res) {
-    // res.status(200).send("Hello client")
     const clientes = await this.clienteService.getAll();
     let { errors, messages } = req.session;
     res.status(200).render("cliente/view/index.html", {
@@ -36,12 +35,11 @@ module.exports = class ClienteController extends AbstractController {
     try {
       const { id } = req.params;
       const cliente = await this.clienteService.getById(id);
-      res.status(200).json(cliente);
-      // res.render("cliente/view/form.html", {
-      //   data: {
-      //     cliente,
-      //   },
-      // });
+      res.render("cliente/view/form.html", {
+        data: {
+          cliente,
+        },
+      });
     } catch (e) {
       throw new Error(`Error : ${e.message}`);
     }
@@ -69,7 +67,6 @@ module.exports = class ClienteController extends AbstractController {
         ];
       }
       res.redirect("/cliente");
-      res.status(200).send(`Hola ${clienteEntity.nombre}`);
     } catch (e) {
       console.log(e.message);
       req.session.errors = [e.message, e.stack];
@@ -89,12 +86,12 @@ module.exports = class ClienteController extends AbstractController {
       // console.log(cliente);
       await this.clienteService.delete(cliente);
       req.session.messages = [`Se eliminó el cliente con el id ${id}`];
-      res.status(200).send(`Cliente con ID: ${id} eliminado.`);
-      // res.redirect("/cliente");
+      // res.status(200).send(`Cliente con ID: ${id} eliminado.`);
+      res.redirect("/cliente");
     } catch (e) {
       console.error(e);
       req.session.errors = [e.message];
-      // res.redirect("/cliente");
+      res.redirect("/cliente");
     }
   }
 };

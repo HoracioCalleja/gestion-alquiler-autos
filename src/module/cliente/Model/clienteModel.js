@@ -49,7 +49,7 @@ module.exports = class ClienteModel extends Model {
           }
         },
         fechaNacimiento : {
-          type : DataTypes.STRING,
+          type : DataTypes.DATE,
           allowNull : false,
         }
       },

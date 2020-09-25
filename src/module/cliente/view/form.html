@@ -47,7 +47,7 @@
               type="text"
               name="apellido"
               value="{{cliente.apellido}}"
-              placeholder="Ej: Super candy"
+              placeholder="Ej: Pérez"
               required
             />
           </p>
@@ -55,17 +55,16 @@
       </div>
       <div class="field-body pt-5">
         <div class="field">
-          <label for="" class="label is-size-5">Tipo de documento</label>
-          <p class="control is-expanded">
-            <input
-              class="input has-text-centered"
-              type="text"
-              name="tipo-documento"
-              value="{{cliente.tipoDocumento}}"
-              placeholder="Ej: DNI"
-              required
-            />
-          </p>
+          <label class="label is-size-5">Tipo de documento</label>
+          <div class="control is-expanded">
+            <div class="select is-rounded">
+              <select name="tipo-documento" required class="is-hoverable">
+                <option {{"selected" if cliente.id}}>Seleccione</option>
+                <option {{"selected" if cliente.tipoDocumento === "DNI"}} value="DNI">DNI</option>
+                <option {{"selected" if cliente.tipoDocumento === "PASAPORTE"}} value="PASAPORTE">PASAPORTE</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="field">
           <label for="" class="label is-size-5">Nro documento</label>
@@ -75,7 +74,7 @@
               type="number"
               name="numero-documento"
               value="{{cliente.numeroDocumento}}"
-              placeholder="Ej: 44.361.644"
+              placeholder="Ej: 44361644"
               required
             />
           </p>
@@ -89,7 +88,7 @@
               class="input has-text-centered"
               type="text"
               name="nacionalidad"
-              placeholder="Ej: Negro"
+              placeholder="Ej: Argenitina"
               value="{{cliente.nacionalidad}}"
             />
           </p>
