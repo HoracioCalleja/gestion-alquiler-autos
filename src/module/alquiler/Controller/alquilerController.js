@@ -25,7 +25,7 @@ module.exports = class AlquilerController extends AbstractController {
     res.status(200).send({"Greet" : "Hello from Alquiler" })
     // const autos = await this.autoService.getAll();
     // let { errors, messages } = req.session;
-    // res.status(200).render("auto/view/index.html", {
+    // res.status(200).render("auto/View/index.html", {
     //   data: {
     //     autos,
     //     errors,
@@ -40,7 +40,7 @@ module.exports = class AlquilerController extends AbstractController {
     // try {
     //   const { id } = req.params;
     //   const auto = await this.autoService.getById(id);
-    //   res.render("auto/view/form.html", {
+    //   res.render("auto/View/form.html", {
     //     data: {
     //       auto,
     //     },
@@ -52,7 +52,7 @@ module.exports = class AlquilerController extends AbstractController {
 
   async create(req, res) {
     // console.log("En create");
-    // res.render("auto/view/form.html");
+    // res.render("auto/View/form.html");
   }
 
   async save(req, res) {

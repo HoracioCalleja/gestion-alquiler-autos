@@ -4,7 +4,7 @@ TODO:
 
 - Alquiler:
 
-Crear el modulo de Alquiler
+Agregar columnas del alquiler
 
 Se deben poder gestionar alquileres manualmente
 . El alquiler se realiza entre 1 auto (máximo) y 1 cliente (máximo)

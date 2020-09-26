@@ -20,7 +20,7 @@ module.exports = class ClienteController extends AbstractController {
   async index(req, res) {
     const clientes = await this.clienteService.getAll();
     let { errors, messages } = req.session;
-    res.status(200).render("cliente/view/index.html", {
+    res.status(200).render("cliente/View/index.html", {
       data: {
         clientes,
         errors,
@@ -35,7 +35,7 @@ module.exports = class ClienteController extends AbstractController {
     try {
       const { id } = req.params;
       const cliente = await this.clienteService.getById(id);
-      res.render("cliente/view/form.html", {
+      res.render("cliente/View/form.html", {
         data: {
           cliente,
         },
@@ -46,7 +46,7 @@ module.exports = class ClienteController extends AbstractController {
   }
 
   async create(req, res) {
-    res.render("cliente/view/form.html");
+    res.render("cliente/View/form.html");
   }
 
   async save(req, res) {
