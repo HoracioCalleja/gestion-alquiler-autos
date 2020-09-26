@@ -3,6 +3,7 @@ const express = require("express");
 const configureDI = require("./config/di");
 const { init: initAuto } = require("./module/auto/module");
 const { init: initCliente } = require("./module/cliente/module");
+const { init: initAlquiler } = require("./module/alquiler/module");
 const nunjucks = require("nunjucks");
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(container.get("Session"));
 
 initAuto(app, container);
 initCliente(app, container);
+initAlquiler(app, container);
 
 const controller = container.get("AutoController");
 

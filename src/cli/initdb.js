@@ -10,9 +10,10 @@ const container = configureDI(app);
 
   const autoModel = container.get("AutoModel");
   const clienteModel = container.get("ClienteModel");
+  const alquilerModel = container.get("AlquilerModel");
 
-  // mainDB.sync({force : true});
-  mainDB.sync();
+  mainDB.sync({force : true});
+  // mainDB.sync();
 
   const sessionDB = container.get("SessionSequelize");
   const session = container.get("Session");
