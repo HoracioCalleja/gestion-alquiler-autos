@@ -1,4 +1,5 @@
 const {  DataTypes, Model } = require("sequelize");
+const AlquilerModel = require("../../alquiler/Model/alquilerModel");
 
 module.exports = class ClienteModel extends Model {
   static setUp(sequelizeInstance) {
@@ -13,44 +14,50 @@ module.exports = class ClienteModel extends Model {
         },
         nombre: {
           type: DataTypes.STRING,
-          allowNull: false,
+
+          get(){
+            return this.getDataValue("nombre").toUpperCase();
+          }
         },
         apellido: {
           type: DataTypes.STRING,
-          allowNull: false,
+
+          get(){
+            return this.getDataValue("apellido").toUpperCase();
+          }
         },
         tipoDocumento: {
           type: DataTypes.ENUM,
           values : ["DNI","PASAPORTE"],
-          allowNull: false,
+
         },
         numeroDocumento: {
           type: DataTypes.STRING,
-          allowNull: false,
+
           unique : true
         },
         nacionalidad: {
           type: DataTypes.STRING,
-          allowNull: false,
+
         },
         direccion: {
           type: DataTypes.STRING,
-          allowNull: false,
+
         },
         telefono: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+
         },
         email: {
           type: DataTypes.STRING,
-          allowNull: false,
+
           validate : {
             isEmail : true,
           }
         },
         fechaNacimiento : {
           type : DataTypes.DATE,
-          allowNull : false,
+
         }
       },
       {
@@ -66,4 +73,9 @@ module.exports = class ClienteModel extends Model {
     return ClienteModel;
 
   }
+
+  // static setUpAssociations(){
+  //   ClienteModel.hasOne(AlquilerModel, {foreignKey : "cliente_id"});
+  // }
+
 };

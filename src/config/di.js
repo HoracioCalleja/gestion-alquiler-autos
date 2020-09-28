@@ -35,7 +35,6 @@ function configureSessionSequelizeDatabase() {
   const sequelize = new Sequelize({
     dialect: "sqlite",
     storage: process.env.DB_SESSION_PATH,
-    logging: console.log,
   });
   return sequelize;
 }
@@ -52,16 +51,30 @@ function configureClienteModel(container) {
 
 function configureAlquilerModel(container) {
   AlquilerModel.setUp(container.get("Sequelize"));
+  AlquilerModel.setUpAssociations(
+    container.get("AutoModel"),
+    container.get("ClienteModel")
+  );
   return AlquilerModel;
 }
 
-function configureAlquilerDefinitions(container){
+function configureAlquilerDefinitions(container) {
   container.addDefinitions({
-    AlquilerModel : factory(configureAlquilerModel),
-    AlquilerRepository : object(AlquilerRepository).construct(get("AlquilerModel"), get("AutoModel"), get("ClienteModel")),
-    AlquilerService : object(AlquilerService).construct(get("AlquilerRepository")),
-    AlquilerController : object(AlquilerController).construct(get("AlquilerService")),
-  })
+    AlquilerModel: factory(configureAlquilerModel),
+    AlquilerRepository: object(AlquilerRepository).construct(
+      get("AlquilerModel"),
+      get("AutoModel"),
+      get("ClienteModel")
+    ),
+    AlquilerService: object(AlquilerService).construct(
+      get("AlquilerRepository")
+    ),
+    AlquilerController: object(AlquilerController).construct(
+      get("AlquilerService"),
+      get("AutoService"),
+      get("ClienteService")
+    ),
+  });
 }
 
 function configureClienteDefinitions(container) {

@@ -18,5 +18,6 @@ const container = configureDI(app);
   const sessionDB = container.get("SessionSequelize");
   const session = container.get("Session");
 
-  sessionDB.sync();
+  sessionDB.sync({force:true});
+  // sessionDB.sync();
 })();

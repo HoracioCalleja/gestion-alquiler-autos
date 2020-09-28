@@ -13,7 +13,7 @@ module.exports = class alquilerService {
   }
   
   async delete(alquiler){
-    if(!(alquiler instanceof alquiler)){
+    if(!(alquiler instanceof Alquiler)){
       throw new Error("No se puede guarda un objeto que no sea de tipo alquiler")
     }
     return this.alquilerRepository.delete(alquiler);

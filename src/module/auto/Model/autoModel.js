@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const AlquilerModel = require("../../alquiler/Model/alquilerModel");
 
 module.exports = class AutoModel extends Model {
   static setUp(sequelizeInstance) {
@@ -13,27 +14,27 @@ module.exports = class AutoModel extends Model {
         },
         marca: {
           type: DataTypes.STRING,
-          allowNull: false,
+          get(){
+            return this.getDataValue("marca").toUpperCase();
+          }
         },
         modelo: {
           type: DataTypes.STRING,
-          allowNull: false,
+          get(){
+            return this.getDataValue("modelo").toUpperCase();
+          }
         },
         anio: {
           type: DataTypes.INTEGER,
-          allowNull: false,
         },
         kms: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
         color: {
           type: DataTypes.STRING,
-          allowNull: false,
         },
         aireAcondicionado: {
           type: DataTypes.BOOLEAN,
-          allowNull: false,
           get() {
             const tiene = this.getDataValue("aireAcondicionado");
             return tiene ? "Si" : "No";
@@ -48,12 +49,10 @@ module.exports = class AutoModel extends Model {
         },
         pasajeros: {
           type: DataTypes.INTEGER,
-          allowNull: false,
         },
         //Caja de cambio automática
         esAutomatico: {
           type: DataTypes.BOOLEAN,
-          allowNull: false,
           get() {
             const esCambioAutomatico = this.getDataValue("esAutomatico");
             return esCambioAutomatico ? "Si" : "No";
@@ -68,7 +67,6 @@ module.exports = class AutoModel extends Model {
         },
         activo: {
           type: DataTypes.BOOLEAN,
-          allowNull: false,
           defaultValue: true,
           get() {
             const estaActivo = this.getDataValue("activo");
@@ -84,7 +82,6 @@ module.exports = class AutoModel extends Model {
         },
         rentado: {
           type: DataTypes.BOOLEAN,
-          allowNull: false,
           defaultValue: false,
           get() {
             const estaRentado = this.getDataValue("rentado");
@@ -100,7 +97,6 @@ module.exports = class AutoModel extends Model {
         },
         precioPorDia: {
           type : DataTypes.INTEGER,
-          allowNull: false,
           get(){
             return `$${this.getDataValue("precioPorDia")}`
           }
@@ -119,6 +115,8 @@ module.exports = class AutoModel extends Model {
     return AutoModel;
   }
 
-
+  // static setUpAssociations(){
+  //   AutoModel.hasOne(AlquilerModel, {foreignKey : "auto_id"});
+  // }
 
 };

@@ -29,12 +29,14 @@ module.exports = class ClienteController extends AbstractController {
     });
     req.session.errors = [];
     req.session.messages = [];
+    // res.json(clientes)
   }
 
   async view(req, res) {
     try {
       const { id } = req.params;
       const cliente = await this.clienteService.getById(id);
+      // res.json(cliente);
       res.render("cliente/View/form.html", {
         data: {
           cliente,

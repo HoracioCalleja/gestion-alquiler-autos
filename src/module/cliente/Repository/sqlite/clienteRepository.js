@@ -3,6 +3,7 @@ const { fromModelToEntity } = require ('../../Maper/clienteMapper');
 const ClienteModel = require ('../../Model/clienteModel');
 
 
+
 module.exports = class ClienteRepository extends AbstractRepository{
   constructor(clienteModel){
     super();

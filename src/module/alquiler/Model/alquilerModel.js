@@ -6,10 +6,58 @@ module.exports = class AlquilerModel extends Model {
       {
         id: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          // allowNull: false,
           autoIncrement: true,
           primaryKey: true,
           unique: true,
+        },
+        // auto_id: {
+        //   type: DataTypes.INTEGER,
+        // //   allowNull: false,
+        //   references: {
+        //     model: {
+        //       tableName: "Autos",
+        //     },
+        //     key: "id",
+        //   },
+        // },
+        // cliente_id: {
+        //   type: DataTypes.INTEGER,
+        // //   allowNull: false,
+        //   references: {
+        //     model: {
+        //       tableName: "Clientes",
+        //     },
+        //     key: "id",
+        //   },
+        // },
+        precioUnitario: {
+          type: DataTypes.INTEGER,
+          // allowNull: false,
+        },
+        desde: {
+          type: DataTypes.DATE,
+          // allowNull: false,
+        },
+        hasta: {
+          type: DataTypes.DATE,
+          // allowNull: false,
+        },
+        medioDePago: {
+          type: DataTypes.ENUM,
+          values: ["EFECTIVO", "TARJETA"],
+          // allowNull: false,
+        },
+        pagado: {
+          type: DataTypes.BOOLEAN,
+          // allowNull: false,
+          set(value) {
+            if (value === "SI") {
+              this.setDataValue("pagado", true);
+            } else {
+              this.setDataValue("pagado", false);
+            }
+          },
         },
       },
       {
@@ -25,5 +73,10 @@ module.exports = class AlquilerModel extends Model {
     return AlquilerModel;
   }
 
-
+  static setUpAssociations(AutoModel, ClienteModel) {
+    AutoModel.hasOne(AlquilerModel, {foreignKey : "auto_id"});
+    ClienteModel.hasOne(AlquilerModel, {foreignKey : "cliente_id"});
+    AlquilerModel.belongsTo(AutoModel , {foreignKey : "auto_id"});
+    AlquilerModel.belongsTo(ClienteModel , {foreignKey : "cliente_id"});
+  }
 };

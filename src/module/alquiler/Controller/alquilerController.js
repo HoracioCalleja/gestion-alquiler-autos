@@ -1,7 +1,7 @@
 const AbstractController = require("../../abstractController");
 const { fromDataToEntity } = require("../Maper/alquilerMapper");
-const ClienteService = require ("../../cliente/Service/clienteService");
-const AutoService = require ("../../auto/Service/autoService");
+const ClienteService = require("../../cliente/Service/clienteService");
+const AutoService = require("../../auto/Service/autoService");
 
 module.exports = class AlquilerController extends AbstractController {
   constructor(alquilerService, autoService, clienteService) {
@@ -22,12 +22,12 @@ module.exports = class AlquilerController extends AbstractController {
   }
 
   async index(req, res) {
-    res.status(200).send({"Greet" : "Hello from Alquiler" })
-    // const autos = await this.autoService.getAll();
     // let { errors, messages } = req.session;
-    // res.status(200).render("auto/View/index.html", {
+    let alquileres = await this.alquilerService.getAll();
+    res.json(alquileres);
+    // res.status(200).render("alquiler/View/index.html", {
     //   data: {
-    //     autos,
+    //     alquileres,
     //     errors,
     //     messages,
     //   },
@@ -38,8 +38,9 @@ module.exports = class AlquilerController extends AbstractController {
 
   async view(req, res) {
     // try {
-    //   const { id } = req.params;
-    //   const auto = await this.autoService.getById(id);
+    const { id } = req.params;
+    const alquiler = await this.alquilerService.getById(id);
+    res.json(alquiler);
     //   res.render("auto/View/form.html", {
     //     data: {
     //       auto,
@@ -51,33 +52,32 @@ module.exports = class AlquilerController extends AbstractController {
   }
 
   async create(req, res) {
-    // console.log("En create");
-    // res.render("auto/View/form.html");
+    const autos = await this.autoService.getAll();
+    const clientes = await this.clienteService.getAll();
+    console.log("autos y clientes", autos, clientes);
+    if (autos.length > 0 && clientes.length > 0) {
+      res.render("alquiler/View/form.html", {
+        data: {
+          autos,
+          clientes,
+        },
+      });
+    } else {
+      // req.session.errors = "Se debe crear al menos un auto y un cliente para generar un alquiler";
+      res.redirect(this.BASE_ROUTE);
+    }
   }
 
   async save(req, res) {
-    // res.send(req.body);
-    // try {
-    // let autoData = req.body;
-    //   console.log("From post: ",autoData);
-    //   let autoEntity = fromDataToEntity(autoData);
-    //   console.log("From map: ",autoEntity);
-    //   let savedAuto = await this.autoService.save(autoEntity);
-    //   // console.log(savedAuto)
-    //   if (autoEntity.id) {
-    //     req.session.messages = [
-    //       `Se actualizó el auto con el id ${autoEntity.id}`,
-    //     ];
-    //     // console.log(req.session.messages);
-    //   } else {
-    //     req.session.messages = [`Se creó el auto con el id ${savedAuto.id}`];
-    //   }
-    //   res.redirect("/auto");
-    // } catch (e) {
-    //   // console.log(e.message)
-    //   req.session.errors = [e.message, e.stack];
-    //   res.redirect("/auto");
-    // }
+    try{
+      let alquilerData = req.body;
+      let alquilerEntity = fromDataToEntity(alquilerData);
+      let alquilerSaved = await this.alquilerService.save(alquilerEntity);
+      res.json(await alquilerSaved);
+    } catch(e){
+      console.error(e);
+      console.error(e.message);
+    }
   }
 
   /**
