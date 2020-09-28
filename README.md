@@ -1,2 +1,5 @@
 # gestion-alquiler-autos
-- Herramientas -> Node.js (server) Express Bulma Nunjucks Sequelize Javascript (browser).
+## Cliente:
+* Bulma Nunjucks Javascript (browser).
+## Server:
+* Node.js Express Sequelize
