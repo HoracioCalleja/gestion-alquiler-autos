@@ -7,7 +7,8 @@ module.exports = class Alquiler{
     desde,
     hasta,
     medioDePago,
-    pagado
+    pagado,
+    precioTotal,
   }){
     this.id = id;
     this.auto_id = auto_id;
@@ -17,5 +18,6 @@ module.exports = class Alquiler{
     this.hasta = hasta;
     this.medioDePago = medioDePago;
     this.pagado = pagado;
+    this.precioTotal = precioTotal;
     }
 }

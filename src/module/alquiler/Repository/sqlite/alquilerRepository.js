@@ -1,8 +1,5 @@
 const AbstractRepository = require("../abstractRepository");
 const { fromModelToEntity } = require("../../Maper/alquilerMapper");
-const AlquilerModel = require("../../Model/alquilerModel");
-const AutoModel = require("../../../auto/Model/autoModel");
-const ClienteModel = require("../../../cliente/Model/clienteModel");
 
 module.exports = class AlquilerRepository extends AbstractRepository {
   constructor(alquilerModel, autoModel, clienteModel) {
@@ -23,19 +20,10 @@ module.exports = class AlquilerRepository extends AbstractRepository {
 
     alquilerModel = this.alquilerModel.build(alquiler, buildOptions);
 
-    console.log("Alquiler despues del build: ", alquilerModel.toJSON());
-
     alquilerModel.setDataValue("auto_id", alquiler.auto_id);
     alquilerModel.setDataValue("cliente_id", alquiler.cliente_id);
 
-    console.log(
-      "Alquiler despues del setDataValue build: ",
-      alquilerModel.toJSON()
-    );
-
     alquilerModel = await alquilerModel.save(alquilerModel);
-
-    // return alquiler;
 
     return fromModelToEntity(alquilerModel);
   }
@@ -59,6 +47,11 @@ module.exports = class AlquilerRepository extends AbstractRepository {
       include: [this.autoModel, this.clienteModel],
     });
     return alquiler;
+  }
+
+  getMedioDePagoValues(){
+    const values = this.alquilerModel.rawAttributes.medioDePago.values;
+    return values;
   }
 
 };

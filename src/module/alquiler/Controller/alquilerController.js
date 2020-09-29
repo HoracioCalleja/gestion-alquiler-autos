@@ -1,7 +1,6 @@
 const AbstractController = require("../../abstractController");
 const { fromDataToEntity } = require("../Maper/alquilerMapper");
-const ClienteService = require("../../cliente/Service/clienteService");
-const AutoService = require("../../auto/Service/autoService");
+
 
 module.exports = class AlquilerController extends AbstractController {
   constructor(alquilerService, autoService, clienteService) {
@@ -54,16 +53,17 @@ module.exports = class AlquilerController extends AbstractController {
   async create(req, res) {
     const autos = await this.autoService.getAll();
     const clientes = await this.clienteService.getAll();
-    console.log("autos y clientes", autos, clientes);
+    const mediosDePago = this.alquilerService.getMedioDePagoValues();
     if (autos.length > 0 && clientes.length > 0) {
       res.render("alquiler/View/form.html", {
         data: {
           autos,
           clientes,
+          mediosDePago
         },
       });
     } else {
-      // req.session.errors = "Se debe crear al menos un auto y un cliente para generar un alquiler";
+      req.session.errors = "Se debe crear al menos un auto y un cliente para generar un alquiler";
       res.redirect(this.BASE_ROUTE);
     }
   }

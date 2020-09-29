@@ -30,6 +30,9 @@ module.exports = class alquilerService {
     return await this.alquilerRepository.getById(id);
   }
 
+  getMedioDePagoValues(){
+    return this.alquilerRepository.getMedioDePagoValues();
+  }
 
 
 }

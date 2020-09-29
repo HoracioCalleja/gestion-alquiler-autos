@@ -6,51 +6,31 @@ module.exports = class AlquilerModel extends Model {
       {
         id: {
           type: DataTypes.INTEGER,
-          // allowNull: false,
+          allowNull: false,
           autoIncrement: true,
           primaryKey: true,
           unique: true,
         },
-        // auto_id: {
-        //   type: DataTypes.INTEGER,
-        // //   allowNull: false,
-        //   references: {
-        //     model: {
-        //       tableName: "Autos",
-        //     },
-        //     key: "id",
-        //   },
-        // },
-        // cliente_id: {
-        //   type: DataTypes.INTEGER,
-        // //   allowNull: false,
-        //   references: {
-        //     model: {
-        //       tableName: "Clientes",
-        //     },
-        //     key: "id",
-        //   },
-        // },
         precioUnitario: {
           type: DataTypes.INTEGER,
-          // allowNull: false,
+          allowNull: false,
         },
         desde: {
           type: DataTypes.DATE,
-          // allowNull: false,
+          allowNull: false,
         },
         hasta: {
           type: DataTypes.DATE,
-          // allowNull: false,
+          allowNull: false,
         },
         medioDePago: {
           type: DataTypes.ENUM,
           values: ["EFECTIVO", "TARJETA"],
-          // allowNull: false,
+          allowNull: false,
         },
         pagado: {
           type: DataTypes.BOOLEAN,
-          // allowNull: false,
+          allowNull: false,
           set(value) {
             if (value === "SI") {
               this.setDataValue("pagado", true);
@@ -58,6 +38,18 @@ module.exports = class AlquilerModel extends Model {
               this.setDataValue("pagado", false);
             }
           },
+        },
+        precioTotal: {
+          type: DataTypes.INTEGER,
+          set(){
+            const precioUnitario = this.getDataValue("precioUnitario");
+            const milisegundosEnUnDia = 1000 * 3600 * 24;
+            const desde = this.getDataValue("desde").getTime();
+            const hasta = this.getDataValue("hasta").getTime();
+            const diferencia = (hasta - desde) / milisegundosEnUnDia;
+            const precioTotal =  diferencia * precioUnitario;
+            this.setDataValue("precioTotal", precioTotal);
+          }
         },
       },
       {
@@ -74,9 +66,9 @@ module.exports = class AlquilerModel extends Model {
   }
 
   static setUpAssociations(AutoModel, ClienteModel) {
-    AutoModel.hasOne(AlquilerModel, {foreignKey : "auto_id"});
-    ClienteModel.hasOne(AlquilerModel, {foreignKey : "cliente_id"});
-    AlquilerModel.belongsTo(AutoModel , {foreignKey : "auto_id"});
-    AlquilerModel.belongsTo(ClienteModel , {foreignKey : "cliente_id"});
+    AutoModel.hasOne(AlquilerModel, { foreignKey: "auto_id" });
+    ClienteModel.hasOne(AlquilerModel, { foreignKey: "cliente_id" });
+    AlquilerModel.belongsTo(AutoModel, { foreignKey: "auto_id" });
+    AlquilerModel.belongsTo(ClienteModel, { foreignKey: "cliente_id" });
   }
 };

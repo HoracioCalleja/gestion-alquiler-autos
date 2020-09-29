@@ -1,6 +1,4 @@
 const Alquiler = require("../Entity/Alquiler");
-const Auto = require("../../auto/Entity/Auto");
-const Cliente = require("../../cliente/Entity/Cliente");
 
 function fromModelToEntity(alquilerModel) {
   return new Alquiler(alquilerModel.toJSON());
