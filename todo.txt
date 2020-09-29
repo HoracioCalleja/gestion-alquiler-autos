@@ -2,18 +2,22 @@ TODO:
 
 ---------------
 
-- Alquiler:
+ALQUILER :
 
-Agregar columnas del alquiler
+-Repository:
 
-Se deben poder gestionar alquileres manualmente
-. El alquiler se realiza entre 1 auto (máximo) y 1 cliente (máximo)
-. Crear modulo de alquiler
-. La tabla de alquileres debe guardar los registros:
-Auto
-Cliente
-Precio unitario (el precio de alquiler por dia)
-Fecha desde
-Fecha hasta
-Medio de pago (efectivo o tarjeta)
-Si el alquiler está pago (booleano)
+Configurar el repository para que devuelva el alquiler con asiociaciones:
+
+(con include y recordar la situacion del return fromModelToEntity. Modificar esta funcion
+o agregar otras funciones que permitar devolver el alquiler con los datos del cliente y auto)
+
+-Hacer la vista de alquileres que muestra:
+  . Cliente : ID y Nombre + Apellido
+  . Auto : Marca, Modelo y ID
+  . Desde y Hasta
+  . Precio total
+  . Pagado
+  . Medio de pago
+  . Precio unitario ? no creo que sea necesario mostrarlo
+
+
