@@ -4,20 +4,8 @@ TODO:
 
 ALQUILER :
 
--Repository:
-
-Configurar el repository para que devuelva el alquiler con asiociaciones:
-
-(con include y recordar la situacion del return fromModelToEntity. Modificar esta funcion
-o agregar otras funciones que permitar devolver el alquiler con los datos del cliente y auto)
-
--Hacer la vista de alquileres que muestra:
-  . Cliente : ID y Nombre + Apellido
-  . Auto : Marca, Modelo y ID
-  . Desde y Hasta
-  . Precio total
-  . Pagado
-  . Medio de pago
-  . Precio unitario ? no creo que sea necesario mostrarlo
+Delete ALQUILER
+Lógica del ALQUILER
+Mejorar vista del ALQUILER
 
 
