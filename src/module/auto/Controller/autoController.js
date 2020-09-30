@@ -46,7 +46,6 @@ module.exports = class AutoController extends AbstractController {
   }
 
   async create(req, res) {
-    // console.log("En create");
     res.render("auto/View/form.html");
   }
 

@@ -24,11 +24,11 @@
 <div class="level">
 
   <div class="level-item has-item-centered">
-    <a href="/auto/create" class="button">
+    <a href="/alquiler/create" class="button">
       <span class="icon is-medium">
         <i class="fas fa-plus-circle"></i>
       </span>
-      <span>Nuevo auto</span>
+      <span>Nuevo Alquiler</span>
     </a>
   </div>
 
@@ -39,56 +39,44 @@
   <thead>
     <tr>
       <th><span class="is-size-6">ID</span></th>
-      <th><span class="is-size-6">Marca</span></th>
-      <th><span class="is-size-6">Modelo</span></th>
-      <th><span class="is-size-6">Año</span></th>
-      <th><span class="is-size-6">Kms</span></th>
-      <th><span class="is-size-6">Color</span></th>
-      <th><span class="is-size-6">A/C</span></th>
-      <th><span class="is-size-6">Pasajeros</span></th>
-      <th><span class="is-size-6">Cambio automatico</span></th>
-      <th><span class="is-size-6">Activo</span></th>
-      <th><span class="is-size-6">Rentado</span></th>
-      <th><span class="is-size-6">Precio por día</span></th>
+      <th><span class="is-size-6">Auto</span></th>
+      <th><span class="is-size-6">Cliente</span></th>
+      <th><span class="is-size-6">Desde</span></th>
+      <th><span class="is-size-6">Hasta</span></th>
+      <th><span class="is-size-6">Medio de pago</span></th>
+      <th><span class="is-size-6">Pagado</span></th>
+      <th><span class="is-size-6">Precio Total</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
 
     </tr>
   </thead>
   <tbody>
-  {% for auto in data.autos %} 
+  {% for alquiler in data.alquileres %} 
     <tr class="has-background-grey-dark has-text-white">
-      <td><span class="is-size-6">{{auto.id}}</span></td>
-      <td><span class="is-size-6">{{auto.marca}}</span></td>
-      <td><span class="is-size-6">{{auto.modelo}}</span></td>
-      <td><span class="is-size-6">{{auto.anio}}</span></td>
-      <td><span class="is-size-6">{{auto.kms}}</span></td>
-      <td><span class="is-size-6">{{auto.color}}</span></td>
-      <td><span class="is-size-6">{{auto.aireAcondicionado}}</span></td>
-      <td><span class="is-size-6">{{auto.pasajeros}}</span></td>
-      <td><span class="is-size-6">{{auto.esAutomatico}}</span></td>
-      <td><span class="is-size-6">{{auto.activo}}</span></td>
-      <td><span class="is-size-6">{{auto.rentado}}</span></td>
-      <td><span class="is-size-6">{{auto.precioPorDia}}</span></td>
-      <td><span class=" is-size-6"> <a class="button" href="/auto/{{auto.id}}" ><i class="fas fa-edit"></i></a> </span></td>
-      <td><span class=" is-size-6"> <a class="button action-delete" href="/auto/delete/{{auto.id}}" data-id="{{auto.id}}" data-marca="{{auto.marca}}"  ><i class="fas fa-trash"></i></a> </span></td>
+      <td><span class="is-size-6">{{alquiler.id}}</span></td>
+      <td><span class="is-size-6">{{alquiler.Auto.marcaModelo}}</span></td>
+      <td><span class="is-size-6">{{alquiler.Cliente.nombreApellidoDocumento}}</span></td>
+      <td><span class="is-size-6">{{alquiler.desde}}</span></td>
+      <td><span class="is-size-6">{{alquiler.hasta}}</span></td>
+      <td><span class="is-size-6">{{alquiler.medioDePago}}</span></td>
+      <td><span class="is-size-6">{{alquiler.pagado}}</span></td>
+      <td><span class="is-size-6">{{alquiler.precioTotal}}</span></td>
+      <td><span class=" is-size-6"> <a class="button" href="/alquiler/{{alquiler.id}}" ><i class="fas fa-edit"></i></a> </span></td>
+      <td><span class=" is-size-6"> <a class="button action-delete" href="/alquiler/delete/{{alquiler.id}}" data-id="{{alquiler.id}}"  ><i class="fas fa-trash"></i></a> </span></td>
     </tr>
     {% endfor %}
   </tbody>
   <tfoot>
     <tr>
       <th><span class="is-size-6">ID</span></th>
-      <th><span class="is-size-6">Marca</span></th>
-      <th><span class="is-size-6">Modelo</span></th>
-      <th><span class="is-size-6">Año</span></th>
-      <th><span class="is-size-6">Kms</span></th>
-      <th><span class="is-size-6">Color</span></th>
-      <th><span class="is-size-6">A/C</span></th>
-      <th><span class="is-size-6">Pasajeros</span></th>
-      <th><span class="is-size-6">Cambio automatico</span></th>
-      <th><span class="is-size-6">Activo</span></th>
-      <th><span class="is-size-6">Rentado</span></th>
-      <th><span class="is-size-6">Precio por día</span></th>
+      <th><span class="is-size-6">Auto</span></th>
+      <th><span class="is-size-6">Cliente</span></th>
+      <th><span class="is-size-6">Desde</span></th>
+      <th><span class="is-size-6">Hasta</span></th>
+      <th><span class="is-size-6">Medio de pago</span></th>
+      <th><span class="is-size-6">Pagado</span></th>
+      <th><span class="is-size-6">Precio Total</span></th>
       <th><span class="is-size-6">Edit</span></th>
       <th><span class="is-size-6">Delete</span></th>
     </tr>

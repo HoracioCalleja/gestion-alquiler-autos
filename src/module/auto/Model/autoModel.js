@@ -101,6 +101,14 @@ module.exports = class AutoModel extends Model {
             return `$${this.getDataValue("precioPorDia")}`
           }
         },
+        marcaModelo : {
+          type : DataTypes.VIRTUAL,
+          get(){
+            const marca = this.getDataValue("marca").toUpperCase();
+            const modelo = this.getDataValue("modelo").toUpperCase();
+            return `${marca} ${modelo}`;
+          }
+        }
       },
       {
         updatedAt: "actualizado_en",

@@ -1,7 +1,12 @@
 const Alquiler = require("../Entity/Alquiler");
+const Auto = require("../../auto/Entity/Auto");
+const Cliente = require("../../cliente/Entity/Cliente");
 
 function fromModelToEntity(alquilerModel) {
-  return new Alquiler(alquilerModel.toJSON());
+  let modelJSON = alquilerModel.toJSON();
+  modelJSON.desde = modelJSON.desde.toISOString().split('T')[0];
+  modelJSON.hasta = modelJSON.hasta.toISOString().split('T')[0];
+  return new Alquiler(modelJSON);
 }
 
 function fromDataToEntity({
@@ -16,8 +21,8 @@ function fromDataToEntity({
 }) {
   return new Alquiler({
     id: Number(id),
-    auto_id : Number(auto_id),
-    cliente_id : Number(cliente_id),
+    Auto : new Auto ({id : Number(auto_id)}),
+    Cliente : new Cliente ({id : Number(cliente_id)}),
     precioUnitario,
     desde,
     hasta,
@@ -25,6 +30,7 @@ function fromDataToEntity({
     pagado,
   });
 }
+
 
 module.exports = {
   fromModelToEntity,

@@ -28,11 +28,11 @@
             <div class="select is-rounded">
               <select name="auto_id" required class="is-hoverable has-text-centered">
                 <option {{"selected" if alquiler.id}}>Seleccione</option>
-                {% for auto in autos %}
-                <option {{"selected" if alquiler.auto.id === auto.id}} class="is-uppercase" value="{{auto.id}}">
-                  <pre>{{auto.marca}}  {{auto.modelo}}</pre>
-                </option>
-                {% endfor %}
+                  {% for auto in autos %}
+                  <option {{"selected" if alquiler.Auto.id === auto.id}} class="is-uppercase" value="{{auto.id}}">
+                  <pre>{{auto.modelo}} {{auto.marca}} </pre>
+                  </option>
+                  {% endfor %}
               </select>
             </div>
           </div>
@@ -44,9 +44,9 @@
               <select name="cliente_id" required class="is-hoverable has-text-centered">
                 <option {{"selected" if alquiler.id}}>Seleccione</option>
                 {% for cliente in clientes %}
-                <option {{"selected" if alquiler.cliente.id === cliente.id}} class="is-uppercase"
+                <option {{"selected" if alquiler.Cliente.id === cliente.id}} class="is-uppercase"
                   value="{{cliente.id}}">
-                  <pre>{{cliente.nombre}}  {{cliente.apellido}}</pre>
+                  <pre>{{cliente.nombre}} {{cliente.apellido}} </pre>
                 </option>
                 {% endfor %}
               </select>
@@ -73,8 +73,8 @@
             <div class="select is-rounded">
               <select name="pagado" required class="is-hoverable">
                 <option {{"selected" if alquiler.id}}>Seleccione</option>
-                <option {{"selected" if alquiler.pagado === "SI"}} value="SI">SI</option>
-                <option {{"selected" if alquiler.pagado === "NO"}} value="NO">NO</option>
+                <option {{"selected" if alquiler.pagado === "Si"}} value="1">SI</option>
+                <option {{"selected" if alquiler.pagado === "No"}} value="0">NO</option>
               </select>
             </div>
           </div>
@@ -84,13 +84,13 @@
         <div class="field">
           <label class="label is-size-5">Desde</label>
           <p class="control is-expanded">
-            <input required class="input has-text-centered" type="date" name="desde" value="{{alquiler.desde}}" />
+            <input required class="input has-text-centered" type="date" name="desde" value={{alquiler.desde}} />
           </p>
         </div>
         <div class="field">
           <label class="label is-size-5">Hasta</label>
           <p class="control is-expanded">
-            <input required class="input has-text-centered" type="date" name="hasta" value="{{alquiler.hasta}}" />
+            <input required class="input has-text-centered"  type="date"  name="hasta" value={{alquiler.hasta}} />
           </p>
         </div>
       </div>
@@ -102,30 +102,6 @@
               value="{{alquiler.precioUnitario}}" placeholder="Ej: 30000" required />
           </p>
         </div>
-        <!-- <div class="field">
-            <label class="label is-size-5">Medio de pago</label>
-            <div class="control is-expanded">
-              <div class="select is-rounded">
-                <select name="medio-pago" required class="is-hoverable">
-                  <option {{"selected" if alquiler.id}}>Seleccione</option>
-                  <option {{"selected" if alquiler.medioDePago === "TARJETA"}} value="TARJETA">TARJETA</option>
-                  <option {{"selected" if alquiler.medioDePago === "EFECTIVO"}} value="EFECTIVO">EFECTIVO</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label is-size-5">¿Está pago?</label>
-          <div class="control is-expanded">
-            <div class="select is-rounded">
-              <select name="pagado" required class="is-hoverable">
-                <option {{"selected" if alquiler.id}}>Seleccione</option>
-                <option {{"selected" if alquiler.pagado === "SI"}} value="SI">SI</option>
-                <option {{"selected" if alquiler.pagado === "NO"}} value="NO">NO</option>
-              </select>
-            </div>
-          </div>
-        </div> -->
       </div>
 
       <div class="field is-grouped is-grouped-centered">

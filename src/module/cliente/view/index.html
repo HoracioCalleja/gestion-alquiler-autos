@@ -4,8 +4,8 @@
 
 
 {% for message in data.messages %}
-<div class="container my-3">
-  <div class="notification is-success">
+<div class="container-fluid my-3">
+  <div class="notification is-success has-text-centered">
     <p>{{message}}</p>
     <button class="delete is-medium cerrar-notificacion"></button>
   </div>
@@ -13,8 +13,8 @@
 {% endfor %} 
 
 {% for error in data.errors %}
-<div class="container my-3 ">
-  <div class="notification is-danger">
+<div class="container-fluid my-3 ">
+  <div class="notification is-danger has-text-centered">
     <p>{{error}}</p>
     <button class="delete is-medium cerrar-notificacion"></button>
   </div>

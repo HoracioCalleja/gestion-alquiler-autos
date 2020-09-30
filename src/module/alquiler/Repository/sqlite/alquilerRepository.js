@@ -20,8 +20,8 @@ module.exports = class AlquilerRepository extends AbstractRepository {
 
     alquilerModel = this.alquilerModel.build(alquiler, buildOptions);
 
-    alquilerModel.setDataValue("auto_id", alquiler.auto_id);
-    alquilerModel.setDataValue("cliente_id", alquiler.cliente_id);
+    alquilerModel.setDataValue("auto_id", alquiler.Auto.id);
+    alquilerModel.setDataValue("cliente_id", alquiler.Cliente.id);
 
     alquilerModel = await alquilerModel.save(alquilerModel);
 
@@ -33,21 +33,19 @@ module.exports = class AlquilerRepository extends AbstractRepository {
   }
 
   async getAll() {
-    const alquileres = await this.alquilerModel.findAll();
+    const alquileres = await this.alquilerModel.findAll({
+      include : [this.autoModel,this.clienteModel],
+    });
     return alquileres.map((alquiler) => fromModelToEntity(alquiler));
   }
 
   async getById(id) {
-    const alquiler = await this.alquilerModel.findByPk(id);
-    return fromModelToEntity(alquiler);
-  }
-
-  async getAlquilerWithAssociations(id){
     const alquiler = await this.alquilerModel.findByPk(id, {
       include: [this.autoModel, this.clienteModel],
     });
-    return alquiler;
+    return fromModelToEntity(alquiler);
   }
+
 
   getMedioDePagoValues(){
     const values = this.alquilerModel.rawAttributes.medioDePago.values;

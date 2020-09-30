@@ -33,7 +33,6 @@ module.exports = class ClienteModel extends Model {
         },
         numeroDocumento: {
           type: DataTypes.STRING,
-
           unique : true
         },
         nacionalidad: {
@@ -57,7 +56,15 @@ module.exports = class ClienteModel extends Model {
         },
         fechaNacimiento : {
           type : DataTypes.DATE,
-
+        },
+        nombreApellidoDocumento : {
+          type : DataTypes.VIRTUAL,
+          get(){
+            const nombre = this.get("nombre");
+            const apellido = this.get("apellido");
+            const numeroDocumento = this.getDataValue("numeroDocumento");
+            return `${nombre} ${apellido} ${numeroDocumento}`
+          }
         }
       },
       {

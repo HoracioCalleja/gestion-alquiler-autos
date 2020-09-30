@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-  <link rel="stylesheet" href="/public/css/base.index.css">
-  <title>Alquiler de autos</title>
-</head>
-<body>
-  
-  <div class="tabs is-centered ">
-    <ul>
-      <li class=" mt-3 autos ">
-        <a href="/auto">
-          <span class="icon is-medium"><i class="fas fa-car"></i></span>
-          <span>Autos</span>
-        </a>
-      </li>
-      <li class=" mt-3 clientes" >
-        <a href="/cliente" >
-          <span class="icon is-medium "><i class="fas fa-user"></i></span>
-          <span>Clientes</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/public/css/base.index.css" />
+    <title>Alquiler de autos</title>
+  </head>
+  <body>
+    <div class="tabs is-centered">
+      <ul>
+        <li class="mt-3 autos">
+          <a href="/auto">
+            <span class="icon is-medium"><i class="fas fa-car"></i></span>
+            <span>Autos</span>
+          </a>
+        </li>
+        <li class="mt-3 clientes">
+          <a href="/cliente">
+            <span class="icon is-medium"><i class="fas fa-user"></i></span>
+            <span>Clientes</span>
+          </a>
+        </li>
+        <li class="mt-3 alquileres">
+          <a href="/alquiler">
+            <span class="icon is-medium"><i class="fas fa-newspaper"></i></span>
+            <span>Alquileres</span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-  {% block body %}
+    {% block body %} {% endblock %}
 
-
-  {% endblock %}
-
-<script src="/public/js/base.index.js"></script>
-  {% block footerscripts %}
-
-  {% endblock %}
-
-</body>
+    <script src="/public/js/base.index.js"></script>
+    {% block footerscripts %} {% endblock %}
+  </body>
 </html>

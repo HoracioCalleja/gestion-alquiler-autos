@@ -1,8 +1,8 @@
 module.exports = class Alquiler{
   constructor({
     id,
-    auto_id,
-    cliente_id,
+    Auto,
+    Cliente,
     precioUnitario,
     desde,
     hasta,
@@ -11,8 +11,8 @@ module.exports = class Alquiler{
     precioTotal,
   }){
     this.id = id;
-    this.auto_id = auto_id;
-    this.cliente_id = cliente_id;
+    this.Auto = Auto;
+    this.Cliente = Cliente;
     this.precioUnitario = precioUnitario;
     this.desde = desde;
     this.hasta = hasta;

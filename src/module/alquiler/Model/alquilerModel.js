@@ -31,8 +31,12 @@ module.exports = class AlquilerModel extends Model {
         pagado: {
           type: DataTypes.BOOLEAN,
           allowNull: false,
+          get(){
+            const pagado = this.getDataValue("pagado")
+            return pagado ? "Si" : "No"
+          },
           set(value) {
-            if (value === "SI") {
+            if (value === "1") {
               this.setDataValue("pagado", true);
             } else {
               this.setDataValue("pagado", false);
