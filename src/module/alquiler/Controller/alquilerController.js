@@ -1,5 +1,5 @@
-const AbstractController = require("../../abstractController");
-const { fromDataToEntity } = require("../Maper/alquilerMapper");
+const AbstractController = require('../../abstractController');
+const { fromDataToEntity } = require('../Maper/alquilerMapper');
 
 module.exports = class AlquilerController extends AbstractController {
   constructor(alquilerService, autoService, clienteService) {
@@ -7,11 +7,12 @@ module.exports = class AlquilerController extends AbstractController {
     this.clienteService = clienteService;
     this.alquilerService = alquilerService;
     this.autoService = autoService;
-    this.BASE_ROUTE = "/alquiler";
+    this.BASE_ROUTE = '/alquiler';
   }
 
   configureRoutes(app) {
     let ROUTE = this.BASE_ROUTE;
+    app.get(`${ROUTE}/debt`, this.alquileresInDebt.bind(this));
     app.get(`${ROUTE}/create`, this.create.bind(this));
     app.get(`${ROUTE}`, this.index.bind(this));
     app.get(`${ROUTE}/:id`, this.view.bind(this));
@@ -22,7 +23,7 @@ module.exports = class AlquilerController extends AbstractController {
   async index(req, res) {
     let { errors, messages } = req.session;
     let alquileres = await this.alquilerService.getAll();
-    res.status(200).render("alquiler/View/index.html", {
+    res.status(200).render('alquiler/View/index.html', {
       data: {
         alquileres,
         errors,
@@ -40,7 +41,7 @@ module.exports = class AlquilerController extends AbstractController {
       const clientes = await this.clienteService.getAll();
       const mediosDePago = this.alquilerService.getMedioDePagoValues();
       const autos = await this.autoService.getAll();
-      res.render("alquiler/View/form.html", {
+      res.render('alquiler/View/form.html', {
         data: {
           alquiler,
           clientes,
@@ -50,7 +51,7 @@ module.exports = class AlquilerController extends AbstractController {
       });
     } catch (e) {
       req.session.errors = [e.message, e.stack];
-      res.redirect("/alquiler");
+      res.redirect('/alquiler');
     }
   }
 
@@ -59,7 +60,7 @@ module.exports = class AlquilerController extends AbstractController {
     const clientes = await this.clienteService.getAll();
     const mediosDePago = this.alquilerService.getMedioDePagoValues();
     if (autos.length > 0 && clientes.length > 0) {
-      res.render("alquiler/View/form.html", {
+      res.render('alquiler/View/form.html', {
         data: {
           autos,
           clientes,
@@ -67,8 +68,7 @@ module.exports = class AlquilerController extends AbstractController {
         },
       });
     } else {
-      req.session.errors =
-        "Se debe crear al menos un auto y un cliente para generar un alquiler";
+      req.session.errors = 'Se debe crear al menos un auto y un cliente para generar un alquiler';
       res.redirect(this.BASE_ROUTE);
     }
   }
@@ -77,22 +77,23 @@ module.exports = class AlquilerController extends AbstractController {
     try {
       const alquilerData = req.body;
       const alquilerEntity = fromDataToEntity(alquilerData);
-      const alquilerEntitySaved = await this.alquilerService.save(
-        alquilerEntity
-      );
+      const alquilerEntitySaved = await this.alquilerService.save(alquilerEntity);
+      const autoId = alquilerEntity.Auto.id;
+      const autoRentado = await this.autoService.changeToRented(autoId);
+      let alquilerSavedMessage;
       if (alquilerEntity.id) {
-        req.session.messages = [
-          `Se actualizó el alquiler con el id ${alquilerEntity.id}`,
-        ];
+        alquilerSavedMessage = [`Se actualizó el alquiler con el id ${alquilerEntity.id}`];
       } else {
-        req.session.messages = [
-          `Se creó el alquiler con el id ${alquilerEntitySaved.id}`,
-        ];
+        alquilerSavedMessage = [`Se creó el alquiler con el id ${alquilerEntitySaved.id}`];
       }
-      res.redirect("/alquiler");
+      req.session.messages = [
+        alquilerSavedMessage +
+          `. El auto ${autoRentado.marca} ${autoRentado.modelo} está siendo alquilado`,
+      ];
+      res.redirect('/alquiler');
     } catch (e) {
       req.session.errors = [e.message, e.stack];
-      res.redirect("/alquiler");
+      res.redirect('/alquiler');
     }
   }
 
@@ -102,17 +103,27 @@ module.exports = class AlquilerController extends AbstractController {
    */
 
   async delete(req, res) {
-    // try {
-    //   const { id } = req.params;
-    //   const auto = await this.autoService.getById(id);
-    //   // console.log(auto);
-    //   await this.autoService.delete(auto);
-    //   req.session.messages = [`Se eliminó el auto con el id ${id}`];
-    //   res.redirect("/auto");
-    // } catch (e) {
-    //   // console.error(e);
-    //   req.session.errors = [e.message];
-    //   res.redirect("/auto");
-    // }
+    try {
+      const { id } = req.params;
+      const alquiler = await this.alquilerService.getById(id);
+      await this.alquilerService.delete(alquiler);
+      req.session.messages = [`Se eliminó el alquiler con el id ${id}`];
+      res.redirect('/alquiler');
+    } catch (e) {
+      // console.error(e);
+      req.session.errors = [e.message];
+      res.redirect('/alquiler');
+    }
+  }
+
+  // TODO : Make the view for this endpoint
+  async alquileresInDebt(req, res) {
+    const alquileresInDebt = await this.alquilerService.getAlquileresInDebt();
+    if (alquileresInDebt.length > 0) {
+      res.json(alquileresInDebt);
+    } else {
+      req.session.messages = ['No hay ningún alquiler en deuda'];
+      res.redirect('/alquiler');
+    }
   }
 };

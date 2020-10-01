@@ -1,5 +1,5 @@
-const AbstractRepository = require("../abstractRepository");
-const { fromModelToEntity } = require("../../Maper/alquilerMapper");
+const AbstractRepository = require('../abstractRepository');
+const { fromModelToEntity } = require('../../Maper/alquilerMapper');
 
 module.exports = class AlquilerRepository extends AbstractRepository {
   constructor(alquilerModel, autoModel, clienteModel) {
@@ -10,8 +10,6 @@ module.exports = class AlquilerRepository extends AbstractRepository {
   }
 
   async save(alquiler) {
-    console.log("Alquiler dentro del SAVE DE REPO : ", alquiler);
-
     let alquilerModel;
 
     const buildOptions = {
@@ -19,12 +17,9 @@ module.exports = class AlquilerRepository extends AbstractRepository {
     };
 
     alquilerModel = this.alquilerModel.build(alquiler, buildOptions);
-
-    alquilerModel.setDataValue("auto_id", alquiler.Auto.id);
-    alquilerModel.setDataValue("cliente_id", alquiler.Cliente.id);
-
+    alquilerModel.setDataValue('auto_id', alquiler.Auto.id);
+    alquilerModel.setDataValue('cliente_id', alquiler.Cliente.id);
     alquilerModel = await alquilerModel.save(alquilerModel);
-
     return fromModelToEntity(alquilerModel);
   }
 
@@ -34,7 +29,7 @@ module.exports = class AlquilerRepository extends AbstractRepository {
 
   async getAll() {
     const alquileres = await this.alquilerModel.findAll({
-      include : [this.autoModel,this.clienteModel],
+      include: [this.autoModel, this.clienteModel],
     });
     return alquileres.map((alquiler) => fromModelToEntity(alquiler));
   }
@@ -46,10 +41,18 @@ module.exports = class AlquilerRepository extends AbstractRepository {
     return fromModelToEntity(alquiler);
   }
 
-
-  getMedioDePagoValues(){
+  getMedioDePagoValues() {
     const values = this.alquilerModel.rawAttributes.medioDePago.values;
     return values;
   }
 
+  async getAlquileresInDebt() {
+    const alquileres = await this.alquilerModel.findAll({
+      include: [this.autoModel, this.clienteModel],
+      where : {
+        pagado : false
+      },
+    });
+    return alquileres.map(alquiler => fromModelToEntity(alquiler));
+  }
 };

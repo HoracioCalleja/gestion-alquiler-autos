@@ -45,6 +45,9 @@ module.exports = class AlquilerModel extends Model {
         },
         precioTotal: {
           type: DataTypes.INTEGER,
+          get(){
+            return `$${this.getDataValue("precioTotal")}`;
+          },
           set(){
             const precioUnitario = this.getDataValue("precioUnitario");
             const milisegundosEnUnDia = 1000 * 3600 * 24;

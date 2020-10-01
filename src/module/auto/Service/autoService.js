@@ -30,6 +30,12 @@ module.exports = class AutoService {
     return await this.autoRepository.getById(id);
   }
 
+  async changeToRented(autoId){
+    const auto = await this.getById(autoId);
+    auto.rentado = "SI";
+    await this.save(auto);
+    return auto;
+  }
 
 
 }

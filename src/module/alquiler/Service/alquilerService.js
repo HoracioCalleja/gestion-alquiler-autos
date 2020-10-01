@@ -34,6 +34,11 @@ module.exports = class alquilerService {
     return this.alquilerRepository.getMedioDePagoValues();
   }
 
+  async getAlquileresInDebt(){
+    console.log("En service: ")
+    const alquileres = await this.alquilerRepository.getAlquileresInDebt();
+    return alquileres;
+  }
 
 }
 

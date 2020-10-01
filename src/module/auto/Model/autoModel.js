@@ -14,15 +14,15 @@ module.exports = class AutoModel extends Model {
         },
         marca: {
           type: DataTypes.STRING,
-          get(){
+          get() {
             return this.getDataValue("marca").toUpperCase();
-          }
+          },
         },
         modelo: {
           type: DataTypes.STRING,
-          get(){
+          get() {
             return this.getDataValue("modelo").toUpperCase();
-          }
+          },
         },
         anio: {
           type: DataTypes.INTEGER,
@@ -37,10 +37,10 @@ module.exports = class AutoModel extends Model {
           type: DataTypes.BOOLEAN,
           get() {
             const tiene = this.getDataValue("aireAcondicionado");
-            return tiene ? "Si" : "No";
+            return tiene ? "SI" : "NO";
           },
           set(value) {
-            if (value === "1") {
+            if (value.toUpperCase() === "SI") {
               this.setDataValue("aireAcondicionado", true);
             } else {
               this.setDataValue("aireAcondicionado", false);
@@ -55,10 +55,10 @@ module.exports = class AutoModel extends Model {
           type: DataTypes.BOOLEAN,
           get() {
             const esCambioAutomatico = this.getDataValue("esAutomatico");
-            return esCambioAutomatico ? "Si" : "No";
+            return esCambioAutomatico ? "SI" : "NO";
           },
           set(value) {
-            if (value === "1") {
+            if (value.toUpperCase() === "SI") {
               this.setDataValue("esAutomatico", true);
             } else {
               this.setDataValue("esAutomatico", false);
@@ -70,10 +70,10 @@ module.exports = class AutoModel extends Model {
           defaultValue: true,
           get() {
             const estaActivo = this.getDataValue("activo");
-            return estaActivo ? "Si" : "No";
+            return estaActivo ? "SI" : "NO";
           },
           set(value) {
-            if (value === "1") {
+            if (value.toUpperCase() === "SI") {
               this.setDataValue("activo", true);
             } else {
               this.setDataValue("activo", false);
@@ -85,10 +85,10 @@ module.exports = class AutoModel extends Model {
           defaultValue: false,
           get() {
             const estaRentado = this.getDataValue("rentado");
-            return estaRentado ? "Si" : "No";
+            return estaRentado ? "SI" : "NO";
           },
           set(value) {
-            if (value === "1") {
+            if (value.toUpperCase() === "SI") {
               this.setDataValue("rentado", true);
             } else {
               this.setDataValue("rentado", false);
@@ -96,19 +96,19 @@ module.exports = class AutoModel extends Model {
           },
         },
         precioPorDia: {
-          type : DataTypes.INTEGER,
-          get(){
-            return `$${this.getDataValue("precioPorDia")}`
-          }
+          type: DataTypes.INTEGER,
+          get() {
+            return `${this.getDataValue("precioPorDia")}`;
+          },
         },
-        marcaModelo : {
-          type : DataTypes.VIRTUAL,
-          get(){
+        marcaModelo: {
+          type: DataTypes.VIRTUAL,
+          get() {
             const marca = this.getDataValue("marca").toUpperCase();
             const modelo = this.getDataValue("modelo").toUpperCase();
             return `${marca} ${modelo}`;
-          }
-        }
+          },
+        },
       },
       {
         updatedAt: "actualizado_en",
@@ -126,5 +126,4 @@ module.exports = class AutoModel extends Model {
   // static setUpAssociations(){
   //   AutoModel.hasOne(AlquilerModel, {foreignKey : "auto_id"});
   // }
-
 };

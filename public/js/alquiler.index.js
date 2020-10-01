@@ -1,8 +1,8 @@
 document.querySelectorAll(".action-delete").forEach(($deleteAction) => {
   $deleteAction.addEventListener("click", (e) => {
-    const { id, nombre } = $deleteAction.dataset;
+    const { id } = $deleteAction.dataset;
 
-    if (!confirm(`¿Desea eliminar el cliente con ID: ${id} - NOMBRE: ${nombre} ?`)) {
+    if (!confirm(`¿Desea eliminar el alquiler ID: ${id}?`)) {
       e.preventDefault();
       return false;
     }

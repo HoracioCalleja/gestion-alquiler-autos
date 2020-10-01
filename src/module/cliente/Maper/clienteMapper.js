@@ -1,7 +1,9 @@
 const Cliente = require ('../Entity/Cliente');
 
 function fromModelToEntity(cliente){
-  return new Cliente(cliente.toJSON());  
+  let clienteJSON = cliente.toJSON();
+  clienteJSON.fechaNacimiento =  clienteJSON.fechaNacimiento.toISOString().split('T')[0];
+  return new Cliente(clienteJSON);  
 }
 
 function fromDataToEntity({

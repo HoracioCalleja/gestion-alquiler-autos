@@ -1,11 +1,21 @@
 TODO: 
 
 ---------------
+HACER FILTROS DE BUSQUEDA:
 
-ALQUILER :
+Autos
 
-Delete ALQUILER
-Lógica del ALQUILER
-Mejorar vista del ALQUILER
+- Activos/no Activos
+- Rentados / no Rentados
+- Filtrado por kms
+- Filtrado por pasajeros
+- Filtrado por cambio automatico
+
+Alquileres
+
+- Buscar por Pagados/No pagados
+- Buscar por Nombre de cliente
+- Buscar por Nro de documento del cliente
+- Buscar por auto
 
 
