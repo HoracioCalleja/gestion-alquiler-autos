@@ -30,6 +30,13 @@ module.exports = class ClienteService {
     return await this.clienteRepository.getById(id);
   }
 
+  async getClientsIndebted(){
+    return await this.clienteRepository.getClientsIndebted();
+  }
+
+  async getClientRentals(id){
+    return await this.clienteRepository.getClientRentals(id);
+  }
 
 
 }

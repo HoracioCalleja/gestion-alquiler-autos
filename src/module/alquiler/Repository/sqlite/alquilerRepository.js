@@ -1,5 +1,7 @@
 const AbstractRepository = require('../abstractRepository');
 const { fromModelToEntity } = require('../../Maper/alquilerMapper');
+const AlquilerModel = require ("../../Model/alquilerModel")
+const ClienteModel = require ("../../../cliente/Model/clienteModel")
 
 module.exports = class AlquilerRepository extends AbstractRepository {
   constructor(alquilerModel, autoModel, clienteModel) {
@@ -46,13 +48,25 @@ module.exports = class AlquilerRepository extends AbstractRepository {
     return values;
   }
 
-  async getAlquileresInDebt() {
+  async getRentalsInDebt() {
     const alquileres = await this.alquilerModel.findAll({
       include: [this.autoModel, this.clienteModel],
-      where : {
-        pagado : false
+      where: {
+        pagado: false,
       },
     });
-    return alquileres.map(alquiler => fromModelToEntity(alquiler));
+    return alquileres.map((alquiler) => fromModelToEntity(alquiler));
+  }
+
+  async getClientRents(id) {
+    const alquileres = await  this.alquilerModel.findAll({
+      include : {
+        model : this.clienteModel,
+        where : {
+          id
+        },
+      }, 
+    });
+    return alquileres;
   }
 };

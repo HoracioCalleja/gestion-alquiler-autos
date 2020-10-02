@@ -12,12 +12,13 @@ module.exports = class AlquilerController extends AbstractController {
 
   configureRoutes(app) {
     let ROUTE = this.BASE_ROUTE;
-    app.get(`${ROUTE}/debt`, this.alquileresInDebt.bind(this));
+    app.get(`${ROUTE}/in-debt`, this.rentalsInDebt.bind(this));
     app.get(`${ROUTE}/create`, this.create.bind(this));
-    app.get(`${ROUTE}`, this.index.bind(this));
+    app.get(`${ROUTE}/cliente/:id`, this.clientRents.bind(this));
     app.get(`${ROUTE}/:id`, this.view.bind(this));
     app.post(`${ROUTE}/save`, this.save.bind(this));
     app.get(`${ROUTE}/delete/:id`, this.delete.bind(this));
+    app.get(`${ROUTE}`, this.index.bind(this));
   }
 
   async index(req, res) {
@@ -117,13 +118,25 @@ module.exports = class AlquilerController extends AbstractController {
   }
 
   // TODO : Make the view for this endpoint
-  async alquileresInDebt(req, res) {
-    const alquileresInDebt = await this.alquilerService.getAlquileresInDebt();
-    if (alquileresInDebt.length > 0) {
-      res.json(alquileresInDebt);
+  async rentalsInDebt(req, res) {
+    const rentalsInDebts = await this.alquilerService.rentalsInDebt();
+    if (rentalsInDebts.length > 0) {
+      res.json(rentalsInDebts);
     } else {
       req.session.messages = ['No hay ningún alquiler en deuda'];
       res.redirect('/alquiler');
+    }
+  }
+
+  // TODO: add view to this endpoint
+  async clientRents(req,res) {
+    try {
+      const { id } = req.params;
+      const rents = await this.alquilerService.getClientRents(id);
+      res.json(rents);
+    } catch (e) {
+      req.session.errors = [e.message, e.stack];
+      res.redirect("/alquiler")
     }
   }
 };

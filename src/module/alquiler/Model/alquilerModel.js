@@ -1,3 +1,4 @@
+const { precompile } = require("nunjucks");
 const { DataTypes, Model } = require("sequelize");
 
 module.exports = class AlquilerModel extends Model {
@@ -55,7 +56,12 @@ module.exports = class AlquilerModel extends Model {
             const hasta = this.getDataValue("hasta").getTime();
             const diferencia = (hasta - desde) / milisegundosEnUnDia;
             const precioTotal =  diferencia * precioUnitario;
-            this.setDataValue("precioTotal", precioTotal);
+            console.log(precioTotal)
+            if (desde === hasta){
+              this.setDataValue("precioTotal", precioUnitario);
+            } else {
+              this.setDataValue("precioTotal", precioTotal);
+            }
           }
         },
       },
