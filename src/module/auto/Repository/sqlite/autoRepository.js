@@ -13,7 +13,6 @@ module.exports = class AutoRepository extends AbstractRepository {
     const buildOptions = { isNewRecord: !auto.id };
     autoModel = this.autoModel.build(auto, buildOptions);
     autoModel = await autoModel.save();
-    console.log('En el repository', autoModel);
     return fromModelToEntity(autoModel);
   }
 
@@ -31,5 +30,11 @@ module.exports = class AutoRepository extends AbstractRepository {
     return fromModelToEntity(auto);
   }
 
-
+  async getPrecioUnitario(id) {
+    const auto = await this.autoModel.findByPk(id, {
+      attributes: ['precioPorDia'],
+    });
+    const precioUnitario = auto.dataValues.precioPorDia;
+    return precioUnitario;
+  }
 };
