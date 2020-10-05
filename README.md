@@ -1,4 +1,4 @@
-# gestion-alquiler-autos
+# gestion-alquiler-autos (en desarrollo)
 ## Cliente:
 * Bulma Nunjucks Javascript (browser).
 ## Server:
