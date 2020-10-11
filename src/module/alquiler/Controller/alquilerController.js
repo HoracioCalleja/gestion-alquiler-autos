@@ -115,11 +115,14 @@ module.exports = class AlquilerController extends AbstractController {
     }
   }
 
-  // TODO : Make the view for this endpoint
   async debts(req, res) {
     const rentalsInDebts = await this.alquilerService.getDebts();
     if (rentalsInDebts.length > 0) {
-      res.json(rentalsInDebts);
+      res.status(200).render('alquiler/View/index.html', {
+        data : {
+          alquileres : rentalsInDebts,
+        }
+      })
     } else {
       req.session.messages = ['No hay ningún alquiler en deuda'];
       res.redirect('/alquiler');

@@ -1,7 +1,8 @@
 const AbstractRepository = require('../abstractRepository');
 const { fromModelToEntity } = require('../../Maper/alquilerMapper');
-const AlquilerModel = require('../../Model/alquilerModel');
-const ClienteModel = require('../../../cliente/Model/clienteModel');
+// const AlquilerModel = require('../../Model/alquilerModel');
+
+
 
 module.exports = class AlquilerRepository extends AbstractRepository {
   constructor(alquilerModel, autoModel, clienteModel) {

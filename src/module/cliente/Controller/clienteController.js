@@ -88,17 +88,26 @@ module.exports = class ClienteController extends AbstractController {
       res.redirect('/cliente');
     }
   }
-  
+
   async inDebt(req, res) {
-    const clients = await this.clienteService.getClientsIndebted();
-    res.json(clients);
+    const clientes = await this.clienteService.getClientsIndebted();
+    if (clientes.length >= 1) {
+      res.status(200).render('cliente/View/index.html', {
+        data: {
+          clientes,
+        },
+      });
+    } else {
+      req.session.messages = ['No hay clientes con deuda actualmente'];
+      res.redirect('/cliente');
+    }
   }
-  
+
   /**
    * @param {import('express').Request} req
    * @param {import('express').Response} res
    */
-  
+
   //  TODO : add view to this endpoint
   async rentals(req, res) {
     try {
@@ -107,7 +116,7 @@ module.exports = class ClienteController extends AbstractController {
       res.json(clientRentals);
     } catch (e) {
       req.session.errors = [e.message, e.stack];
-      res.redirect("/cliente")
+      res.redirect('/cliente');
     }
   }
 };

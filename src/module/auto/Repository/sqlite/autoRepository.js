@@ -1,6 +1,6 @@
 const AbstractRepository = require('../abstractRepository');
 const { fromModelToEntity } = require('../../Maper/autoMapper');
-
+const { Op } = require('sequelize');
 
 module.exports = class AutoRepository extends AbstractRepository {
   constructor(autoModel) {
@@ -37,4 +37,14 @@ module.exports = class AutoRepository extends AbstractRepository {
     const precioUnitario = auto.dataValues.precioPorDia;
     return precioUnitario;
   }
+
+  async getAvailableCars() {
+    const availableCars = await this.autoModel.findAll({
+      where: {
+        [Op.and]: [{ activo: true }, { rentado: false }],
+      },
+    });
+    return availableCars;
+  }
+
 };

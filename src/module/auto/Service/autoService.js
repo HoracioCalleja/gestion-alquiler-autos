@@ -37,6 +37,10 @@ module.exports = class AutoService {
     return auto;
   }
 
+  async getAvailableCars(){
+    return await this.autoRepository.getAvailableCars();
+  }
+
   async getPrecioUnitario(id) {
     if (id === undefined) {
       throw new Error('Se necesita de un ID para obtener informaicion del Auto');
