@@ -1,4 +1,4 @@
-# gestion-alquiler-autos (en desarrollo)
+# CRUD/AMB de alquileres de autos.
 ## Cliente:
 * Bulma Nunjucks Javascript (browser).
 ## Server:
