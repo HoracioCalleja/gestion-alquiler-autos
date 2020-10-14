@@ -11,8 +11,11 @@
 ## LEVEL 3
 <img src="./diagrams/Level3.jpg" alt="level 2"/>
 
+## Algunas dependencias y sus referencias:
 
-## Cliente:
-* Bulma Nunjucks Javascript (browser).
-## Server:
-* Node.js Express Sequelize
+* [Bulma.io](https://bulma.io/) como framework de CSS.
+* [Sequelize](https://sequelize.org/master/) ORM de node.js basado en promesas para el uso de base de datos.
+* [Express.js](https://expressjs.com/) para la creación de un servidor web.
+* [RSDI](https://www.npmjs.com/package/rsdi) para el uso del Dependency Injection Container en node.js.
+* [Nunjucks](https://mozilla.github.io/nunjucks/) para el renderizado de templates.
+
