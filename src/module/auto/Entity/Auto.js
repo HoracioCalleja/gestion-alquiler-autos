@@ -1,20 +1,6 @@
-module.exports = class Auto{
-   /**
-   * 
-   * @param {number} id 
-   * @param {string} marca 
-   * @param {string} modelo 
-   * @param {number} anio 
-   * @param {number} kms 
-   * @param {string} color 
-   * @param {number} pasajeros 
-   * @param {string} esAutomatico 
-   * @param {string} aireAcondicionado 
-   * @param {string} activo 
-   * @param {string} rentado 
-   * @param {number} precioPorDia 
-   */
-  constructor({
+module.exports = class Auto {
+
+  constructor(
     id,
     marca,
     modelo,
@@ -27,7 +13,7 @@ module.exports = class Auto{
     activo,
     rentado,
     precioPorDia,
-  })
+  )
 
   {
     this.id = id;

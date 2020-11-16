@@ -28,6 +28,7 @@ module.exports = class AutoController extends AbstractController {
     let { errors, messages } = req.session;
     res.render('auto/View/index.html', {
       data: {
+        title: 'Lista de autos',
         autos,
         errors,
         messages,
@@ -48,6 +49,7 @@ module.exports = class AutoController extends AbstractController {
       const auto = await this.autoService.getById(id);
       res.render('auto/View/form.njk', {
         data: {
+          title: `Viendo el auto marca ${auto.marca} - modelo ${auto.modelo} - año ${auto.anio}`,
           auto,
         },
       });
@@ -61,10 +63,9 @@ module.exports = class AutoController extends AbstractController {
    * @param {import('express').Response} res
    */
 
-  async create(req, res) {
-    res.render('auto/View/form.njk');
+  create(req, res) {
+    res.render('auto/View/form.njk', { data: { title: 'Crear auto' } });
   }
-
 
   /**
    * @param {import('express').Request} req
@@ -83,7 +84,7 @@ module.exports = class AutoController extends AbstractController {
       }
       res.redirect('/auto');
     } catch (e) {
-      req.session.errors = [e.message, e.stack];
+      req.session.errors = [e.name, e.message];
       res.redirect('/auto');
     }
   }
@@ -101,7 +102,7 @@ module.exports = class AutoController extends AbstractController {
       req.session.messages = [`Se eliminó el auto con el id ${id}`];
       res.redirect('/auto');
     } catch (e) {
-      req.session.errors = [e.message];
+      req.session.errors = [e.name, e.message];
       res.redirect('/auto');
     }
   }
@@ -112,11 +113,16 @@ module.exports = class AutoController extends AbstractController {
    */
 
   async availableCars(req, res) {
-    try {
-      const cars = await this.autoService.getAvailableCars();
-      res.json(cars);
-    } catch (e) {
-      console.log(e.message);
+    const autos = await this.autoService.getAvailableCars();
+    if (!autos) {
+      req.session.messages = ['No hay auto disponibles.'];
+      res.redirect('/auto');
     }
+    res.render('auto/View/index.html', {
+      data: {
+        title: 'Autos disponibles',
+        autos,
+      },
+    });
   }
 };

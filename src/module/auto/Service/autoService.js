@@ -8,15 +8,15 @@ module.exports = class AutoService {
   }
 
   async save(auto) {
-    if (auto === undefined) {
-      throw new CarNotDefinedError();
+    if (!(auto instanceof Auto)) {
+      throw new CarNotDefinedError('Invalid Car or not defined');
     }
     return this.autoRepository.save(auto);
   }
 
   async delete(auto) {
     if (!(auto instanceof Auto)) {
-      throw new CarNotDefinedError();
+      throw new CarNotDefinedError('Invalid Car or not defined');
     }
     return this.autoRepository.delete(auto);
   }
@@ -27,7 +27,7 @@ module.exports = class AutoService {
 
   async getById(id) {
     if (id === undefined) {
-      throw new CarIdNotDefinedError();
+      throw new CarIdNotDefinedError('Car ID not defined');
     }
     return await this.autoRepository.getById(id);
   }
@@ -39,7 +39,7 @@ module.exports = class AutoService {
     return auto;
   }
 
-  async getAvailableCars(){
+  async getAvailableCars() {
     return await this.autoRepository.getAvailableCars();
   }
 

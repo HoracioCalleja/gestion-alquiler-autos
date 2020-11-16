@@ -4,16 +4,16 @@
 
 {% set auto = data.auto %}
 
+{% if data.title %}}
 <div class="hero">
   <div class="hero-body">
     <p class="level-item is-size-4 has-text-centered has-text-weight-bold">
-      {% if auto.id %} Editando Auto con ID : {{auto.id}} {% else %} Nuevo auto
-      {% endif %}
+     {{ data.title }}
     </p>
   </div>
 </div>
+{% endif %}
 
-<hr />
 
 <section class="section">
   <form action="/auto/save" method="POST">

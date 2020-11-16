@@ -44,7 +44,9 @@ module.exports = class AutoRepository extends AbstractRepository {
         [Op.and]: [{ activo: true }, { rentado: false }],
       },
     });
-    return availableCars;
+    if (availableCars.length >= 1) {
+      return availableCars.map((auto) => fromModelToEntity(auto));
+    }
+    return null;
   }
-
 };
