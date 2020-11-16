@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "schema:sync": "node src/cli/initdb.js",
-    "dev": "npm run schema:sync && npx nodemon src/app.js"
+    "dev": "npm run schema:sync && npx nodemon src/app.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/HoracioCalleja/gestion-alquiler-autos#readme",
   "devDependencies": {
+    "jest": "^26.5.3",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
@@ -31,6 +33,7 @@
     "rsdi": "^1.0.5",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.0",
+    "typescript": "^4.0.5"
   }
 }

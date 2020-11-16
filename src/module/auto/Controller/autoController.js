@@ -18,10 +18,15 @@ module.exports = class AutoController extends AbstractController {
     app.get(`${ROUTE}/delete/:id`, this.delete.bind(this));
   }
 
+  /**
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   */
+
   async index(req, res) {
     const autos = await this.autoService.getAll();
     let { errors, messages } = req.session;
-    res.status(200).render('auto/View/index.html', {
+    res.render('auto/View/index.html', {
       data: {
         autos,
         errors,
@@ -32,23 +37,39 @@ module.exports = class AutoController extends AbstractController {
     req.session.messages = [];
   }
 
+  /**
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   */
+
   async view(req, res) {
     try {
       const { id } = req.params;
       const auto = await this.autoService.getById(id);
-      res.render('auto/View/form.html', {
+      res.render('auto/View/form.njk', {
         data: {
           auto,
         },
       });
     } catch (e) {
-      throw new Error(`Error : ${e.message}`);
+      req.session.errors = [e.message, e.stack];
+      res.redirect('/auto');
     }
   }
 
+  /**
+   * @param {import('express').Response} res
+   */
+
   async create(req, res) {
-    res.render('auto/View/form.html');
+    res.render('auto/View/form.njk');
   }
+
+
+  /**
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   */
 
   async save(req, res) {
     try {
@@ -84,6 +105,11 @@ module.exports = class AutoController extends AbstractController {
       res.redirect('/auto');
     }
   }
+
+  /**
+   * @param {import('express').Request} req
+   * @param {import('express').Response} res
+   */
 
   async availableCars(req, res) {
     try {

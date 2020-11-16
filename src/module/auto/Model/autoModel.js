@@ -1,5 +1,4 @@
 const { DataTypes, Model } = require('sequelize');
-const AlquilerModel = require('../../alquiler/Model/alquilerModel');
 
 module.exports = class AutoModel extends Model {
   static setUp(sequelizeInstance) {
@@ -134,7 +133,4 @@ module.exports = class AutoModel extends Model {
     return AutoModel;
   }
 
-  // static setUpAssociations(){
-  //   AutoModel.hasOne(AlquilerModel, {foreignKey : "auto_id"});
-  // }
 };

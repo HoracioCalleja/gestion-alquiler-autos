@@ -1,4 +1,6 @@
 const Auto = require('../Entity/Auto');
+const CarNotDefinedError = require('../errors/carNotDefinedError');
+const CarIdNotDefinedError = require('../errors/carIdNotDefinedError');
 
 module.exports = class AutoService {
   constructor(autoRepository) {
@@ -7,14 +9,14 @@ module.exports = class AutoService {
 
   async save(auto) {
     if (auto === undefined) {
-      throw new Error('Auto not defined');
+      throw new CarNotDefinedError();
     }
     return this.autoRepository.save(auto);
   }
 
   async delete(auto) {
     if (!(auto instanceof Auto)) {
-      throw new Error('No se puede guarda un objeto que no sea de tipo Auto');
+      throw new CarNotDefinedError();
     }
     return this.autoRepository.delete(auto);
   }
@@ -25,7 +27,7 @@ module.exports = class AutoService {
 
   async getById(id) {
     if (id === undefined) {
-      throw new Error('Se necesita de un ID para obtener un Auto');
+      throw new CarIdNotDefinedError();
     }
     return await this.autoRepository.getById(id);
   }
@@ -43,7 +45,7 @@ module.exports = class AutoService {
 
   async getPrecioUnitario(id) {
     if (id === undefined) {
-      throw new Error('Se necesita de un ID para obtener informaicion del Auto');
+      throw new CarIdNotDefinedError();
     }
     return await this.autoRepository.getPrecioUnitario(id);
   }
