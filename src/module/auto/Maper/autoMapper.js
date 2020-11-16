@@ -12,7 +12,7 @@ function fromModelToEntity({
   aireAcondicionado,
   activo,
   rentado,
-  'precio-dia': precioPorDia,
+  precioPorDia,
 }) {
   return new Auto(
     id,

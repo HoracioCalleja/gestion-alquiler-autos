@@ -47,6 +47,7 @@ module.exports = class AutoController extends AbstractController {
     try {
       const { id } = req.params;
       const auto = await this.autoService.getById(id);
+      console.log(auto)
       res.render('auto/View/form.njk', {
         data: {
           title: `Viendo el auto marca ${auto.marca} - modelo ${auto.modelo} - año ${auto.anio}`,
