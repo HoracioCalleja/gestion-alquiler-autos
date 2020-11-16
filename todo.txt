@@ -1,24 +1,7 @@
 TODO: 
 
 ---------------
-HACER FILTROS DE BUSQUEDA:
-
-Cliente
-
--Intentar buscar los alquileres asociados al cliente
-
-Alquileres
-
-- Antes de crear un alquiler, chequear si el cliente tiene alquileres con deuda, si tiene, no se lo deja hacer otro alquiler
-- Crear vista para el endpoint indebt
-
-Autos
-
-- Activos/no Activos
-- Rentados / no Rentados
-- Filtrado por kms
-- Filtrado por pasajeros
-- Filtrado por cambio automatico
+HACER FILTROS DE BUSQUEDA
 
 
 
